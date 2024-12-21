@@ -1,9 +1,14 @@
 import { NextPage } from "next";
+import HomeWrapper from "./components/home/HomeWrapper";
+import HomeServices from "./components/home/HomeServices";
+import Footer from "./components/shared/Footer";
 
 const Homepage: NextPage = () => {
   return (
     <>
-      DOCU NEST
+       <HomeWrapper />
+       <HomeServices />
+       <Footer />
     </>
   )
 }
