@@ -1,38 +1,39 @@
 {
-  "name": "docu-nest-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "convex": "bun run convex"
-  },
-  "dependencies": {
-    "@radix-ui/react-dialog": "^1.1.4",
-    "@radix-ui/react-dropdown-menu": "^2.1.4",
-    "@radix-ui/react-scroll-area": "^1.2.2",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "convex": "^1.17.4",
-    "framer-motion": "^11.15.0",
-    "lucide-react": "^0.469.0",
-    "next": "15.1.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.2",
-    "@eslint/eslintrc": "^3"
-  }
+	"name": "docu-nest-app",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"biome": "bunx biome check --write .",
+		"convex": "bun run convex"
+	},
+	"dependencies": {
+		"@radix-ui/react-dialog": "^1.1.4",
+		"@radix-ui/react-dropdown-menu": "^2.1.4",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"convex": "^1.17.4",
+		"framer-motion": "^11.15.0",
+		"lucide-react": "^0.469.0",
+		"next": "15.1.2",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"tailwind-merge": "^2.5.5",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@eslint/eslintrc": "^3",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"eslint": "^9",
+		"eslint-config-next": "15.1.2",
+		"postcss": "^8",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
+	}
 }

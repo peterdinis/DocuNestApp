@@ -1,11 +1,7 @@
-import { NextPage } from "next";
+import type { NextPage } from "next";
 
 const DocumentsPage: NextPage = () => {
-    return (
-        <>
-            DOCUMENTS
-        </>
-    )
-}
+	return <>DOCUMENTS</>;
+};
 
-export default DocumentsPage
+export default DocumentsPage;
