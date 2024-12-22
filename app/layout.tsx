@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "./components/shared/Navigation";
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
 	title: "DocuNest",
@@ -17,6 +18,7 @@ export default function RootLayout({
 			<body className={`antialiased`}>
 				<Navigation />
 				{children}
+				<Toaster />
 			</body>
 		</html>
 	);
