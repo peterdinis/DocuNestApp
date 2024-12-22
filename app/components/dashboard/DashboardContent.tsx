@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import Header from "../shared/Header";
 import DashboardStatus from "./DashboardStatus";
+import DashboardActivites from "./DashboardActivites";
 
 const DashboardContent: FC = () => {
 
@@ -12,7 +13,7 @@ const DashboardContent: FC = () => {
 					<br />
 					<DashboardStatus />
 					<div className="mt-3">
-						Activites later
+						<DashboardActivites />
 					</div>
 				</div>
 			</main>
