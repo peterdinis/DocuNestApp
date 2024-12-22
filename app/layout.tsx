@@ -3,23 +3,21 @@ import "./globals.css";
 import Navigation from "./components/shared/Navigation";
 
 export const metadata: Metadata = {
-  title: "DocuNest",
-  description: "Application for team document collaboration",
+	title: "DocuNest",
+	description: "Application for team document collaboration",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        <Navigation />
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={`antialiased`}>
+				<Navigation />
+				{children}
+			</body>
+		</html>
+	);
 }
