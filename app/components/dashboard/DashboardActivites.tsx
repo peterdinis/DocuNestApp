@@ -3,7 +3,7 @@ import { FC } from "react";
 const DashboardActivites: FC = () => {
     return (
         <>
-        aaaa
+         Activities
         </>
     )
 }
