@@ -16,8 +16,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const Navigation: FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [theme, setTheme] = useState<"light" | "dark">("light");
-
-	// Toggle theme
+	
 	const toggleTheme = () => {
 		const newTheme = theme === "light" ? "dark" : "light";
 		setTheme(newTheme);
@@ -34,15 +33,13 @@ const Navigation: FC = () => {
 	return (
 		<nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 			<div className="container flex h-14 items-center">
-				{/* Logo/Brand */}
 				<div className="mr-8">
-					<Link href="/" className="flex items-center space-x-2">
+					<Link href="/" className="flex items-center space-x-2 ml-5">
 						<span className="font-bold">DocuNest</span>
 					</Link>
 				</div>
 
-				{/* Desktop Navigation */}
-				<div className="hidden md:flex md:flex-1">
+				<div className="md:flex md:flex-1 flex justify-center items-center">
 					<div className="flex gap-6">
 						{navigation.map((item) => (
 							<Link
@@ -56,7 +53,6 @@ const Navigation: FC = () => {
 					</div>
 				</div>
 
-				{/* Mobile Navigation */}
 				<div className="flex flex-1 justify-end md:hidden">
 					<Sheet open={isOpen} onOpenChange={setIsOpen}>
 						<SheetTrigger asChild>
@@ -81,17 +77,13 @@ const Navigation: FC = () => {
 						</SheetContent>
 					</Sheet>
 				</div>
-
-				{/* Right Section */}
 				<div className="flex items-center justify-end space-x-2">
-					{/* Theme Toggle */}
 					<Button variant="ghost" size="icon" onClick={toggleTheme}>
 						<Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
 						<Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
 						<span className="sr-only">Toggle theme</span>
 					</Button>
 
-					{/* User Menu */}
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="ghost" size="icon">
