@@ -7,8 +7,9 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"biome": "bunx biome check --write .",
-		"convex": "bun run convex"
+		"format": "bunx biome check --write .",
+		"convex": "npx convex dev",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@radix-ui/react-dialog": "^1.1.4",
