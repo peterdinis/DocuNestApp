@@ -1,9 +1,9 @@
 "use client"
 
 import { FC, ReactNode } from "react";
-import {
-    ClerkProvider,
-  } from '@clerk/nextjs'
+import { ClerkProvider, useAuth } from "@clerk/clerk-react";
+import { ConvexProviderWithClerk } from "convex/react-clerk";
+import { ConvexReactClient } from "convex/react";
 
 type AppClerkProviderProps = {
     children?: ReactNode
@@ -12,6 +12,9 @@ type AppClerkProviderProps = {
 const AppClerkProvider: FC<AppClerkProviderProps> = ({
     children
 }: AppClerkProviderProps) => {
+    const convex = new ConvexReactClient(process.env.);
+
+
     return (
         <ClerkProvider>
             {children}
