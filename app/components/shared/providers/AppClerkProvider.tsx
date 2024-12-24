@@ -1,25 +1,22 @@
-"use client"
+'use client';
 
-import { FC, ReactNode } from "react";
-import { ClerkProvider, useAuth } from "@clerk/clerk-react";
-import { ConvexProviderWithClerk } from "convex/react-clerk";
-import { ConvexReactClient } from "convex/react";
+import { ReactNode } from 'react';
+import { ConvexReactClient } from 'convex/react';
+import { ClerkProvider, useAuth } from '@clerk/nextjs';
+import { ConvexProviderWithClerk } from 'convex/react-clerk';
 
-type AppClerkProviderProps = {
-    children?: ReactNode
-}
+const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
-const AppClerkProvider: FC<AppClerkProviderProps> = ({
-    children
-}: AppClerkProviderProps) => {
-    const convex = new ConvexReactClient(process.env.);
-
-
+export default function AppClerkProvider({
+    children,
+}: {
+    children: ReactNode;
+}) {
     return (
         <ClerkProvider>
-            {children}
+            <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+                {children}
+            </ConvexProviderWithClerk>
         </ClerkProvider>
-    )
+    );
 }
-
-export default AppClerkProvider
