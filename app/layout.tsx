@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
+import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from "./_components/providers/ThemeProvider";
 import Navigation from "./_components/shared/Navigation";
 
@@ -15,19 +15,17 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        <ClerkProvider>
-        <ThemeProvider>
-          <Navigation />
-          {children}
-          <Toaster />
-        </ThemeProvider>
-        </ClerkProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={`antialiased`}>
+				<ClerkProvider>
+					<ThemeProvider>
+						<Navigation />
+						{children}
+						<Toaster />
+					</ThemeProvider>
+				</ClerkProvider>
+			</body>
+		</html>
+	);
 }

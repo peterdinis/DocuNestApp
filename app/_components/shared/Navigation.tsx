@@ -10,6 +10,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
+import { useUser } from "@clerk/nextjs";
 import { Menu, User, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -42,6 +43,14 @@ const Navigation: FC = () => {
 		});
 		router.push("/login");
 	};
+
+	const { isLoaded, isSignedIn, user } = useUser();
+
+	if (!isLoaded || !isSignedIn) {
+		return null;
+	}
+
+	console.log("U", user);
 
 	return (
 		<nav className="bg-background shadow-md">
