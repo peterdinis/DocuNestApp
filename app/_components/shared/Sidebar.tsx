@@ -2,13 +2,17 @@
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { CirclePlusIcon, HomeIcon, MenuIcon} from "lucide-react";
+import { CirclePlusIcon, HomeIcon, MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { type FC, useState } from "react";
 
 const navItems = [
 	{ icon: HomeIcon, label: "Home", href: "/dashboard" },
-	{ icon: CirclePlusIcon, label: "Create new document", href: "/documents/create" },
+	{
+		icon: CirclePlusIcon,
+		label: "Create new document",
+		href: "/documents/create",
+	},
 ];
 
 const Sidebar: FC = () => {

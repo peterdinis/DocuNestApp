@@ -44,7 +44,7 @@ const Navigation: FC = () => {
 		router.push("/login");
 	};
 
-	const {user} = useUser();
+	const { user } = useUser();
 
 	console.log("U", user);
 
