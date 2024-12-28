@@ -1,10 +1,10 @@
 import type { FC, ReactNode } from "react";
 
 type IServiceCardProps = {
-    icon?: ReactNode;
-    iconHeaderDesc: string;
-    iconHeaderText: string
-}
+	icon?: ReactNode;
+	iconHeaderDesc: string;
+	iconHeaderText: string;
+};
 
 const ServiceCard: FC<IServiceCardProps> = ({
 	icon,

@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/toaster";
 import ThemeProvider from "./_components/providers/ThemeProvider";
-import { Toaster } from "@/components/ui/toaster"
 import Navigation from "./_components/shared/Navigation";
 
 export const metadata: Metadata = {
-  title: "DocuNestApp",
-  description: "Application for live collboration with people",
+	title: "DocuNestApp",
+	description: "Application for live collboration with people",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
