@@ -10,6 +10,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
+import { useUser } from "@clerk/nextjs";
 import { Menu, User, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -43,6 +44,10 @@ const Navigation: FC = () => {
 		router.push("/login");
 	};
 
+	const {user} = useUser();
+
+	console.log("U", user);
+
 	return (
 		<nav className="bg-background shadow-md">
 			<div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -51,8 +56,8 @@ const Navigation: FC = () => {
 				</Link>
 
 				<div className="hidden md:flex items-center space-x-4">
-					<AuthButton href="/register" label="Register" />
-					<AuthButton href="/login" label="Login" />
+					<AuthButton href="/sign-up" label="Register" />
+					<AuthButton href="/sign-in" label="Login" />
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="ghost" className="relative ml-3">
@@ -82,8 +87,8 @@ const Navigation: FC = () => {
 
 			{isOpen && (
 				<div className="md:hidden space-y-1 px-2 pb-3 pt-2 sm:px-3">
-					<AuthButton href="/register" label="Register" />
-					<AuthButton href="/login" label="Login" />
+					<AuthButton href="/sign-up" label="Register" />
+					<AuthButton href="/sign-in" label="Login" />
 					<div className="mt-5">
 						<ThemeButton />
 					</div>
