@@ -3,8 +3,8 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function Page() {
 	return (
-        <AuthWrapper>
-            <SignIn />;
-        </AuthWrapper>
-    )
+		<AuthWrapper>
+			<SignIn />;
+		</AuthWrapper>
+	);
 }
