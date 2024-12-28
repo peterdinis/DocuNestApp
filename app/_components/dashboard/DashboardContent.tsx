@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Header from "../shared/Header";
 import { format } from "date-fns";
+import AllDocuments from "../documents/AllDocuments";
 
 const DashboardContent: FC = () => {
     const actualDateTime = format(new Date(), "yyyy-MM-dd HH:mm:ss");
@@ -12,6 +13,9 @@ const DashboardContent: FC = () => {
                 <span className="prose-p: prose mt-10 dark:text-sky-50">
                     Actual date and time: {actualDateTime}
                 </span>
+            </div>
+            <div className="flex mt-20 justify-center items-center">
+                <AllDocuments />
             </div>
         </main>
     )
