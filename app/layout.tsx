@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import ThemeProvider from "./_components/providers/ThemeProvider";
+import { Toaster } from "@/components/ui/toaster"
+import Navigation from "./_components/shared/Navigation";
 
 export const metadata: Metadata = {
   title: "DocuNestApp",
@@ -18,7 +21,11 @@ export default function RootLayout({
         className={`antialiased`}
       >
         <ClerkProvider>
-        {children}
+        <ThemeProvider>
+          <Navigation />
+          {children}
+          <Toaster />
+        </ThemeProvider>
         </ClerkProvider>
       </body>
     </html>
