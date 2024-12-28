@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Provider } from "./_components/liveblocks/Provider";
 import ThemeProvider from "./_components/providers/ThemeProvider";
 import Navigation from "./_components/shared/Navigation";
-import { Provider } from "./_components/liveblocks/Provider";
 
 export const metadata: Metadata = {
 	title: "DocuNestApp",
