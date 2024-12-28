@@ -12,6 +12,7 @@
 		"@clerk/nextjs": "^6.9.6",
 		"@lexical/react": "^0.22.0",
 		"@liveblocks/client": "^2.15.1",
+		"@liveblocks/node": "^2.15.1",
 		"@liveblocks/react": "^2.15.1",
 		"@liveblocks/react-lexical": "^2.15.1",
 		"@liveblocks/react-ui": "^2.15.1",
