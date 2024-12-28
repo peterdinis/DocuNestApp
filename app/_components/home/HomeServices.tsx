@@ -14,7 +14,7 @@ const zoomInEffect = {
 	},
 };
 
-const HeroServices: FC = () => {
+const HomeServices: FC = () => {
 	return (
 		<div id="services" className="py-16">
 			<div className="m-auto space-y-16 px-6 text-gray-500 xl:container md:px-12">
@@ -68,4 +68,4 @@ const HeroServices: FC = () => {
 	);
 };
 
-export default HeroServices;
+export default HomeServices;
