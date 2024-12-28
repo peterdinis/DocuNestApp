@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from "./_components/providers/ThemeProvider";
 import Navigation from "./_components/shared/Navigation";
+import { Room } from "./_components/liveblocks/Room";
 
 export const metadata: Metadata = {
 	title: "DocuNestApp",
@@ -16,13 +17,15 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html suppressHydrationWarning lang="en">
 			<body className={`antialiased`}>
 				<ClerkProvider>
 					<ThemeProvider>
-						<Navigation />
-						{children}
-						<Toaster />
+						<Room>
+							<Navigation />
+							{children}
+							<Toaster />
+						</Room>
 					</ThemeProvider>
 				</ClerkProvider>
 			</body>
