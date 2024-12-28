@@ -9,7 +9,9 @@ const CollaborativeRoom: FC = () => {
     return (
         <RoomProvider id="my-room">
             <ClientSideSuspense fallback={<Loading />}>
-                dieririr
+               <div className='collaborative-room'>
+                
+               </div>
             </ClientSideSuspense>
         </RoomProvider>
     )
