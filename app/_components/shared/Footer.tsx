@@ -30,7 +30,7 @@ const Footer: FC = () => {
 								className="inline-block text-2xl"
 								whileHover={{ scale: 1.1 }}
 							>
-								&copy; Docu Nest 2024
+								&copy; Docu Nest 2025
 							</motion.span>{" "}
 						</div>
 					</div>

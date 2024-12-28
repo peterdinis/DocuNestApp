@@ -47,7 +47,7 @@ const Navigation: FC = () => {
     <nav className="bg-background shadow-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex-shrink-0">
-          <span className="text-2xl font-bold text-primary">DocuNest</span>
+          <span className="text-2xl font-bold text-primary">DocuNestApp</span>
         </Link>
 
         <div className="hidden md:flex items-center space-x-4">
