@@ -1,21 +1,19 @@
-"use client";
+'use client';
 
-import type { ReactNode } from "react";
-import {
-    LiveblocksProvider,
-    RoomProvider,
-    ClientSideSuspense,
-} from "@liveblocks/react/suspense";
-import { Loader2 } from "lucide-react";
+import { ClientSideSuspense, LiveblocksProvider } from '@liveblocks/react/suspense';
+import type { ReactNode } from 'react';
+import Loading from '../shared/Loading';
 
-export function Provider({ children }: { children: ReactNode }) {
-    return (
-        <LiveblocksProvider authEndpoint={"/api/liveblocks-auth"}>
-            <RoomProvider id="my-room">
-                <ClientSideSuspense fallback={<Loader2 className="animate-spin w-8 h-8" />}>
-                    {children}
-                </ClientSideSuspense>
-            </RoomProvider>
-        </LiveblocksProvider>
-    );
+const Provider = ({ children }: { children: ReactNode}) => {
+  return (
+    <LiveblocksProvider 
+      authEndpoint="/api/liveblocks-auth"
+    >
+      <ClientSideSuspense fallback={<Loading />}>
+        {children}
+      </ClientSideSuspense>
+    </LiveblocksProvider>
+  )
 }
+
+export default Provider
