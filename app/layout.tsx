@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from "./_components/providers/ThemeProvider";
 import Navigation from "./_components/shared/Navigation";
-import { Room } from "./_components/liveblocks/Room";
+import { Provider } from "./_components/liveblocks/Provider";
 
 export const metadata: Metadata = {
 	title: "DocuNestApp",
@@ -21,11 +21,11 @@ export default function RootLayout({
 			<body className={`antialiased`}>
 				<ClerkProvider>
 					<ThemeProvider>
-						<Room>
+						<Provider>
 							<Navigation />
 							{children}
 							<Toaster />
-						</Room>
+						</Provider>
 					</ThemeProvider>
 				</ClerkProvider>
 			</body>

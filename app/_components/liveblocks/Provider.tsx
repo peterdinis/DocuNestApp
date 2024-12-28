@@ -8,7 +8,7 @@ import {
 } from "@liveblocks/react/suspense";
 import { Loader2 } from "lucide-react";
 
-export function Room({ children }: { children: ReactNode }) {
+export function Provider({ children }: { children: ReactNode }) {
     return (
         <LiveblocksProvider authEndpoint={"/api/liveblocks-auth"}>
             <RoomProvider id="my-room">
