@@ -1,9 +1,13 @@
+"use client"
+
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 import type { FC } from "react";
 
 const HomeWrapper: FC = () => {
+	const { user } = useUser();
 	return (
 		<>
 			<BackgroundBeamsWithCollision>
@@ -22,9 +26,15 @@ const HomeWrapper: FC = () => {
 						</span>
 					</p>
 					<div className="mt-5 flex justify-center align-top">
-						<Button variant={"default"} size="lg" color="primary">
-							<Link href="/sign-up">Try now</Link>
-						</Button>
+						{user ? (
+							<Button variant={"default"} size="lg" color="primary">
+								<Link href="/dashboard">Go to dashboard</Link>
+							</Button>
+						) : (
+							<Button variant={"default"} size="lg" color="primary">
+								<Link href="/sign-up">Try now</Link>
+							</Button>
+						)}
 					</div>
 				</div>
 			</BackgroundBeamsWithCollision>
