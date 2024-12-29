@@ -10,7 +10,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
-import { useUser } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import { Menu, User, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -46,6 +46,8 @@ const Navigation: FC = () => {
 
 	const { user } = useUser();
 
+	console.log("U", user)
+
 	return (
 		<nav className="bg-background shadow-md">
 			<div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -54,24 +56,14 @@ const Navigation: FC = () => {
 				</Link>
 
 				<div className="hidden md:flex items-center space-x-4">
-					<AuthButton href="/sign-up" label="Register" />
-					<AuthButton href="/sign-in" label="Login" />
-					<DropdownMenu>
-						<DropdownMenuTrigger asChild>
-							<Button variant="ghost" className="relative ml-3">
-								<span className="sr-only">Open user menu</span>
-								<User className="h-5 w-5" />
-							</Button>
-						</DropdownMenuTrigger>
-						<DropdownMenuContent align="end">
-							<DropdownMenuLabel>Account</DropdownMenuLabel>
-							<DropdownMenuSeparator />
-							<DropdownMenuItem>
-								<Link href="/dashboard">Profile</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem onClick={logoutUser}>Sign out</DropdownMenuItem>
-						</DropdownMenuContent>
-					</DropdownMenu>
+					{user ? (
+						<UserButton />
+					): (
+						<>
+						<AuthButton href="/sign-up" label="Register" />
+						<AuthButton href="/sign-in" label="Login" />
+						</>
+					)}
 					<ThemeButton />
 				</div>
 
@@ -85,8 +77,14 @@ const Navigation: FC = () => {
 
 			{isOpen && (
 				<div className="md:hidden space-y-1 px-2 pb-3 pt-2 sm:px-3">
-					<AuthButton href="/sign-up" label="Register" />
-					<AuthButton href="/sign-in" label="Login" />
+					{user ? (
+						<UserButton />
+					): (
+						<>
+						<AuthButton href="/sign-up" label="Register" />
+						<AuthButton href="/sign-in" label="Login" />
+						</>
+					)}
 					<div className="mt-5">
 						<ThemeButton />
 					</div>
