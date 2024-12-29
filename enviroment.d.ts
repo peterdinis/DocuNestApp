@@ -1,12 +1,10 @@
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            DATABASE_URL: string;
-            NODE_ENV: 'development' | 'production';
-            NEXTAUTH_SECRET: string;
-            OPENAI_API_KEY: string;
-            UPLOADTHING_SECRET: string;
-            UPLOADTHING_APP_ID: string;
+            NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: string;
+            CLERK_SECRET_KEY: string
+            LIVEBLOCKS_PUBLIC_KEY: string;
+            LIVEBLOCKS_SECRET_KEY: string;
         }
     }
 }
