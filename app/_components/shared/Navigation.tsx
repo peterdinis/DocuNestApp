@@ -46,8 +46,6 @@ const Navigation: FC = () => {
 
 	const { user } = useUser();
 
-	console.log("U", user);
-
 	return (
 		<nav className="bg-background shadow-md">
 			<div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">

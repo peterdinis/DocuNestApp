@@ -23,7 +23,7 @@ const HomeWrapper: FC = () => {
 					</p>
 					<div className="mt-5 flex justify-center align-top">
 						<Button variant={"default"} size="lg" color="primary">
-							<Link href="/register">Try now</Link>
+							<Link href="/sign-up">Try now</Link>
 						</Button>
 					</div>
 				</div>
