@@ -9,7 +9,7 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/app/_hooks/use-toast";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Menu, User, X } from "lucide-react";
 import Link from "next/link";

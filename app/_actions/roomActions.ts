@@ -1,7 +1,7 @@
 'use server';
 
-import { liveblocks } from '@/lib/liveblocks';
-import { getAccessType, parseStringify } from '@/lib/utils';
+import { liveblocks } from '@/app/_lib/liveblocks';
+import { getAccessType, parseStringify } from '@/app/_lib/utils';
 import { nanoid } from 'nanoid'
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
