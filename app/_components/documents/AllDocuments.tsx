@@ -4,7 +4,7 @@ import useUserDocuments from "@/app/_hooks/use-user-documents";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
-import { DownloadCloud } from "lucide-react";
+import { DownloadCloud, Ghost, Loader2 } from "lucide-react";
 import type { FC } from "react";
 
 const AllDocuments: FC = () => {
@@ -13,7 +13,7 @@ const AllDocuments: FC = () => {
 	const { documents, loading, error } = useUserDocuments(emailAddress);
 
 	if (loading) {
-		return <div>Loading documents...</div>;
+		return <Loader2 className="animate-spin w-8 h-8" />
 	}
 
 	if (error) {
@@ -21,7 +21,7 @@ const AllDocuments: FC = () => {
 	}
 
 	if (documents.length === 0) {
-		return <div>No documents found.</div>;
+		return <div className="font-bold text-xl"><Ghost className="animate-bounce w-8 h-8" /> No documents found.</div>;
 	}
 
 	return (

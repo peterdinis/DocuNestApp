@@ -1,19 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useToast } from "@/app/_hooks/use-toast";
 import { UserButton, useUser } from "@clerk/nextjs";
-import { Menu, User, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { type FC, useState } from "react";
 import ThemeButton from "./ThemeButton";
 
@@ -30,23 +20,10 @@ const AuthButton = ({ href, label }: { href: string; label: string }) => (
 
 const Navigation: FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const { toast } = useToast();
-	const router = useRouter();
 
 	const toggleMenu = () => setIsOpen(!isOpen);
 
-	const logoutUser = async () => {
-		toast({
-			title: "Logout Successful",
-			duration: 2000,
-			className: "bg-green-800 text-white font-bold",
-		});
-		router.push("/login");
-	};
-
 	const { user } = useUser();
-
-	console.log("U", user)
 
 	return (
 		<nav className="bg-background shadow-md">
