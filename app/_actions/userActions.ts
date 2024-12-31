@@ -1,39 +1,7 @@
 "use server";
 
-import { liveblocks } from "@/lib/liveblocks";
-import { parseStringify } from "@/lib/utils";
-import { clerkClient } from "@clerk/nextjs/server";
-
-export const getClerkUsers = async ({ userIds }: { userIds: string[] }) => {
-	try {
-		const { data } = await clerkClient.users.getUserList({
-			emailAddress: userIds,
-		});
-
-		const users = data.map(
-			(user: {
-				id: any;
-				firstName: any;
-				lastName: any;
-				emailAddresses: { emailAddress: any }[];
-				imageUrl: any;
-			}) => ({
-				id: user.id,
-				name: `${user.firstName} ${user.lastName}`,
-				email: user.emailAddresses[0].emailAddress,
-				avatar: user.imageUrl,
-			}),
-		);
-
-		const sortedUsers = userIds.map((email) =>
-			users.find((user: { email: string }) => user.email === email),
-		);
-
-		return parseStringify(sortedUsers);
-	} catch (error) {
-		console.log(`Error fetching users: ${error}`);
-	}
-};
+import { liveblocks } from "../_lib/liveblocks";
+import { parseStringify } from "../_lib/utils";
 
 export const getDocumentUsers = async ({
 	roomId,
