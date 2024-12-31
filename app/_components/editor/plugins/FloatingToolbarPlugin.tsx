@@ -84,8 +84,8 @@ function Toolbar({
 			shift({ padding, limiter: limitShift() }),
 			size({ padding }),
 		],
-		whileElementsMounted: (...args: any) => {
-			return autoUpdate(...args, {
+		whileElementsMounted: (reference, floating, update) => {
+			return autoUpdate(reference, floating, update, {
 				animationFrame: true,
 			});
 		},

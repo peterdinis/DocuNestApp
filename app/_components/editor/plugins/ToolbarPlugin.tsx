@@ -269,7 +269,7 @@ function useActiveBlock() {
 			let element =
 				anchor.getKey() === "root"
 					? anchor
-					: $findMatchingParent(anchor, (e) => {
+					: $findMatchingParent(anchor, (e: { getParent: () => any; }) => {
 							const parent = e.getParent();
 							return parent !== null && $isRootOrShadowRoot(parent);
 						});
