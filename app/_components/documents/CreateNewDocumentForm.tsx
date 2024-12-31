@@ -19,7 +19,12 @@ const CreateNewDocumentForm: FC = () => {
 				</div>
 			</div>
 			<main className="flex w-full flex-col items-center mt-10">
-				TODO
+			<CollaborativeRoom 
+        roomId={id}
+        roomMetadata={room.metadata}
+        users={usersData}
+        currentUserType={currentUserType}
+      />
 			</main>
 		</div>
 	);
