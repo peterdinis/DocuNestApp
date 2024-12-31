@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type FC, useState } from "react";
 import { useUser } from "@clerk/nextjs";
+import { useToast } from "@/app/_hooks/use-toast";
 
 const navItems = [
 	{ icon: HomeIcon, label: "Home", href: "/dashboard" },
@@ -16,6 +17,7 @@ const navItems = [
 const Sidebar: FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const router = useRouter();
+	const {toast} = useToast();
 	const { user } = useUser(); // Use `useUser` at the top level
 
 	// Updated `handleCreateDocument` function to use `user` directly
@@ -29,7 +31,11 @@ const Sidebar: FC = () => {
 
 		if (!email) {
 			// If no email, ensure there's an error or redirect
-			return alert("Email is required");
+			toast({
+				title: "Email is required",
+				duration: 2000,
+				className: "bg-red-800 text-white font-bold text-xl"
+			})
 		}
 
 		try {
