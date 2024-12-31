@@ -1,5 +1,9 @@
+"use client"
+
 import type { FC } from "react";
 import Header from "../shared/Header";
+import { ClientSideSuspense, RoomProvider } from '@liveblocks/react/suspense'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 
 const CreateNewDocumentForm: FC = () => {
 	return (
@@ -9,7 +13,9 @@ const CreateNewDocumentForm: FC = () => {
 					<Header text="Create new document" />
 				</div>
 			</div>
-			TODO
+			<main className="flex w-full flex-col items-center mt-10">
+				TODO
+			</main>
 		</div>
 	);
 };
