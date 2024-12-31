@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 import type { FC } from "react";
 
 const HomeWrapper: FC = () => {

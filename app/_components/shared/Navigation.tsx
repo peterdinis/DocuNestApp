@@ -35,10 +35,10 @@ const Navigation: FC = () => {
 				<div className="hidden md:flex items-center space-x-4">
 					{user ? (
 						<UserButton />
-					): (
+					) : (
 						<>
-						<AuthButton href="/sign-up" label="Register" />
-						<AuthButton href="/sign-in" label="Login" />
+							<AuthButton href="/sign-up" label="Register" />
+							<AuthButton href="/sign-in" label="Login" />
 						</>
 					)}
 					<ThemeButton />
@@ -56,10 +56,10 @@ const Navigation: FC = () => {
 				<div className="md:hidden space-y-1 px-2 pb-3 pt-2 sm:px-3">
 					{user ? (
 						<UserButton />
-					): (
+					) : (
 						<>
-						<AuthButton href="/sign-up" label="Register" />
-						<AuthButton href="/sign-in" label="Login" />
+							<AuthButton href="/sign-up" label="Register" />
+							<AuthButton href="/sign-in" label="Login" />
 						</>
 					)}
 					<div className="mt-5">

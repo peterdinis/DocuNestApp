@@ -13,7 +13,7 @@ const AllDocuments: FC = () => {
 	const { documents, loading, error } = useUserDocuments(emailAddress);
 
 	if (loading) {
-		return <Loader2 className="animate-spin w-8 h-8" />
+		return <Loader2 className="animate-spin w-8 h-8" />;
 	}
 
 	if (error) {
@@ -21,7 +21,11 @@ const AllDocuments: FC = () => {
 	}
 
 	if (documents.length === 0) {
-		return <div className="font-bold text-xl"><Ghost className="animate-bounce w-8 h-8" /> No documents found.</div>;
+		return (
+			<div className="font-bold text-xl">
+				<Ghost className="animate-bounce w-8 h-8" /> No documents found.
+			</div>
+		);
 	}
 
 	return (
