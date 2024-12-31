@@ -1,17 +1,119 @@
-"use client";
+'use client';
 
-import { ClientSideSuspense, RoomProvider } from "@liveblocks/react/suspense";
-import type { FC } from "react";
-import Loading from "../shared/Loading";
+import { ClientSideSuspense, RoomProvider } from '@liveblocks/react/suspense'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { Input } from '@/components/ui/input';
+import { updateDocument } from '@/app/_actions/roomActions';
+import Loading from '../shared/Loading';
+import { Pen } from 'lucide-react';
+import ShareModal from '../shared/ShareModal';
 
-const CollaborativeRoom: FC = () => {
-	return (
-		<RoomProvider id="my-room">
-			<ClientSideSuspense fallback={<Loading />}>
-				<div className="collaborative-room"></div>
-			</ClientSideSuspense>
-		</RoomProvider>
-	);
-};
+const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: CollaborativeRoomProps) => {
+  const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
+  const [editing, setEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-export default CollaborativeRoom;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const updateTitleHandler = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'Enter') {
+      setLoading(true);
+
+      try {
+        if(documentTitle !== roomMetadata.title) {
+          const updatedDocument = await updateDocument(roomId, documentTitle);
+          
+          if(updatedDocument) {
+            setEditing(false);
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if(containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setEditing(false);
+        updateDocument(roomId, documentTitle);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [roomId, documentTitle])
+
+  useEffect(() => {
+    if(editing && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [editing])
+  
+
+  return (
+    <RoomProvider id={roomId}>
+      <ClientSideSuspense fallback={<Loading />}>
+        <div className="collaborative-room">
+            <div ref={containerRef} className="flex w-fit items-center justify-center gap-2">
+              {editing && !loading ? (
+                <Input 
+                  type="text"
+                  value={documentTitle}
+                  ref={inputRef}
+                  placeholder="Enter title"
+                  onChange={(e) => setDocumentTitle(e.target.value)}
+                  onKeyDown={updateTitleHandler}
+                  disabled={!editing}
+                  className="document-title-input"
+                />
+              ) : (
+                <>
+                  <p className="document-title">{documentTitle}</p>
+                </>
+              )}
+
+              {currentUserType === 'editor' && !editing && (
+                <Pen className='w-8 h-8' />
+              )}
+
+              {currentUserType !== 'editor' && !editing && (
+                <p className="view-only-tag">View only</p>
+              )}
+
+              {loading && <p className="text-sm text-gray-400">saving...</p>}
+            </div>
+            <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
+              Active Collaborators
+
+              <ShareModal 
+                roomId={roomId}
+                collaborators={users}
+                creatorId={roomMetadata.creatorId}
+                currentUserType={currentUserType}
+              />
+
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
+        <Editor roomId={roomId} currentUserType={currentUserType} />
+        </div>
+      </ClientSideSuspense>
+    </RoomProvider>
+  )
+}
+
+export default CollaborativeRoom
