@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { type FC, useState } from "react";
 import ThemeButton from "./ThemeButton";
+import Notifications from "../notifications/Notifications";
 
 const AuthButton = ({ href, label }: { href: string; label: string }) => (
 	<Button
@@ -34,7 +35,10 @@ const Navigation: FC = () => {
 
 				<div className="hidden md:flex items-center space-x-4">
 					{user ? (
-						<UserButton />
+						<div className="flex items-center space-x-4">
+							<UserButton />
+							<Notifications />
+						</div>
 					) : (
 						<>
 							<AuthButton href="/sign-up" label="Register" />
@@ -55,7 +59,10 @@ const Navigation: FC = () => {
 			{isOpen && (
 				<div className="md:hidden space-y-1 px-2 pb-3 pt-2 sm:px-3">
 					{user ? (
-						<UserButton />
+						<div className="flex items-center space-x-4">
+							<UserButton />
+							<Notifications />
+						</div>
 					) : (
 						<>
 							<AuthButton href="/sign-up" label="Register" />
