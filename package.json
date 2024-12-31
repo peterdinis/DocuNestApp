@@ -9,7 +9,7 @@
 		"lint": "pnpm biome check --write ."
 	},
 	"dependencies": {
-		"@clerk/nextjs": "^6.9.6",
+		"@clerk/nextjs": "5.2.4",
 		"@floating-ui/react-dom": "^2.1.2",
 		"@lexical/react": "^0.22.0",
 		"@lexical/rich-text": "^0.22.0",
