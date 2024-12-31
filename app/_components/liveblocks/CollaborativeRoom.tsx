@@ -9,6 +9,7 @@ import { updateDocument } from '@/app/_actions/roomActions';
 import Loading from '../shared/Loading';
 import { Pen } from 'lucide-react';
 import ShareModal from '../shared/ShareModal';
+import ActiveCollaborators from './ActiveCollaborators';
 
 const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: CollaborativeRoomProps) => {
   const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
@@ -93,7 +94,7 @@ const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: Col
               {loading && <p className="text-sm text-gray-400">saving...</p>}
             </div>
             <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
-              Active Collaborators
+              <ActiveCollaborators />
 
               <ShareModal 
                 roomId={roomId}
