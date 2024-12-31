@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/popover"
 import { InboxNotification, InboxNotificationList, LiveblocksUIConfig } from "@liveblocks/react-ui"
 import { useInboxNotifications, useUnreadInboxNotificationsCount } from "@liveblocks/react/suspense"
-import { Bell } from "lucide-react"
+import { Bell, Ghost } from "lucide-react"
 import Image from "next/image"
 import { ReactNode } from "react"
 
@@ -26,7 +26,7 @@ const Notifications = () => {
         )}
       </PopoverTrigger>
       <PopoverContent align="end" className="shad-popover">
-        <LiveblocksUIConfig 
+        <LiveblocksUIConfig
           overrides={{
             INBOX_NOTIFICATION_TEXT_MENTION: (user: ReactNode) => (
               <>{user} mentioned you.</>
@@ -35,11 +35,14 @@ const Notifications = () => {
         >
           <InboxNotificationList>
             {unreadNotifications.length <= 0 && (
-              <p className="py-2 text-center text-dark-500">No new notifications</p>
+              <p className="py-2 flex items-center justify-center space-x-2 text-center text-dark-500">
+                <Ghost className="animate-bounce w-8 h-8" />
+                <span>No new notifications</span>
+              </p>
             )}
 
             {unreadNotifications.length > 0 && unreadNotifications.map((notification) => (
-              <InboxNotification 
+              <InboxNotification
                 key={notification.id}
                 inboxNotification={notification}
                 className="bg-dark-200 text-white"
@@ -47,19 +50,19 @@ const Notifications = () => {
                 showActions={false}
                 kinds={{
                   thread: (props) => (
-                    <InboxNotification.Thread {...props} 
+                    <InboxNotification.Thread {...props}
                       showActions={false}
                       showRoomName={false}
                     />
                   ),
                   textMention: (props) => (
-                    <InboxNotification.TextMention {...props} 
+                    <InboxNotification.TextMention {...props}
                       showRoomName={false}
                     />
                   ),
                   $documentAccess: (props) => (
                     <InboxNotification.Custom {...props} title={props.inboxNotification.activities[0].data.title} aside={<InboxNotification.Icon className="bg-transparent">
-                      <Image 
+                      <Image
                         src={props.inboxNotification.activities[0].data.avatar as string || ''}
                         width={36}
                         height={36}

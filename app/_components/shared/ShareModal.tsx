@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { updateDocumentAccess } from "@/app/_actions/roomActions";
-import Collaborator from "../liveblocks/Colaborator";
+import Collaborator from "../liveblocks/Collaborator";
 
 const ShareModal = ({ roomId, collaborators, creatorId, currentUserType }: ShareDocumentDialogProps) => {
   const user = useSelf();
