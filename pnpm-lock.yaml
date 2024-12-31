@@ -20,6 +20,12 @@ importers:
       '@lexical/rich-text':
         specifier: ^0.22.0
         version: 0.22.0
+      '@lexical/selection':
+        specifier: ^0.22.0
+        version: 0.22.0
+      '@lexical/utils':
+        specifier: ^0.22.0
+        version: 0.22.0
       '@liveblocks/client':
         specifier: ^2.15.1
         version: 2.15.1

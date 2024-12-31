@@ -10,6 +10,7 @@ import Loading from '../shared/Loading';
 import { Pen } from 'lucide-react';
 import ShareModal from '../shared/ShareModal';
 import ActiveCollaborators from './ActiveCollaborators';
+import { Editor } from '../editor/Editor';
 
 const CollaborativeRoom = ({ roomId, roomMetadata, users, currentUserType }: CollaborativeRoomProps) => {
   const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
