@@ -41,7 +41,7 @@ const Sidebar: FC = () => {
 
 			if (newDocument) {
 				// Redirect to the newly created document's page
-				router.push(`/documents/create`);
+				router.push(`/documents/${newDocument.id}`);
 			} else {
 				// Handle failure (optional)
 				alert("Failed to create document.");
