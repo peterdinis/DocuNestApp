@@ -12,14 +12,11 @@ interface PageProps {
 
 interface User {
   email: string;
-  // Add other user properties as needed
 }
 
 async function CreateNewDocument(props: PageProps) {
-  // Await the params first
   const { id } = await props.params;
-  
-  // Fetch the current user (if logged in)
+
   const clerkUser = await currentUser();
   
   if (!clerkUser) {
@@ -28,7 +25,6 @@ async function CreateNewDocument(props: PageProps) {
 
   const userEmail = clerkUser.emailAddresses[0].emailAddress;
 
-  // Fetch room/document data using the awaited id
   const room = await getDocument({
     roomId: id,
     userId: userEmail,
@@ -38,11 +34,9 @@ async function CreateNewDocument(props: PageProps) {
     redirect('/');
   }
 
-  // Get the user IDs from the room
   const userIds = Object.keys(room.usersAccesses);
   const users = await getClerkUsers({ userIds });
 
-  // Map the users data with the user type based on room access
   const usersData = users?.map((user: User) => ({
     ...user,
     userType: room.usersAccesses[user.email]?.includes('room:write') 
@@ -50,7 +44,6 @@ async function CreateNewDocument(props: PageProps) {
       : 'viewer'
   }));
 
-  // Determine the current user's type based on room access
   const currentUserType = room.usersAccesses[userEmail]?.includes('room:write')
     ? 'editor'
     : 'viewer';
