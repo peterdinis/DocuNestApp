@@ -4,7 +4,7 @@ import DashboardContent from "./DashboardContent";
 
 const DashboardWrapper: FC = () => {
 	return (
-		<div className="dark:bg-dark dark:text-light flex min-h-screen">
+		<div className="dark:bg-background dark:text-slate-50 flex min-h-screen">
 			<Sidebar />
 			<div className="flex-1 overflow-auto">
 				<DashboardContent />
