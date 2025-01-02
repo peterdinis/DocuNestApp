@@ -32,6 +32,25 @@ html::-webkit-scrollbar-thumb {
 	scrollbar-width: none; /* Firefox */
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius: 50px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #09090a;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #2e3d5b;
+    border-radius: 50px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #7878a3;
+  }
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;
@@ -112,4 +131,30 @@ html::-webkit-scrollbar-thumb {
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+@layer utilities {
+	.shad-select {
+		@apply w-fit border-none bg-transparent text-blue-100 !important;
+	  }
+	
+	  .shad-select svg {
+		@apply ml-1 mt-1;
+	  }
+	
+	  .shad-select-item {
+		@apply cursor-pointer bg-dark-200 text-blue-100 focus:bg-dark-300 hover:bg-dark-300 focus:text-blue-100 !important;
+	  }
+
+	  .floating-toolbar {
+		@apply flex w-full min-w-max items-center justify-center gap-2 rounded-lg bg-dark-350 p-1.5 shadow-xl;
+	  }
+	
+	  .floating-toolbar-btn {
+		@apply relative inline-flex size-8 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50;
+	  }
+	
+	  .toolbar-wrapper {
+		@apply z-50 custom-scrollbar w-screen overflow-auto border-y border-dark-300 bg-dark-100 pl-3 pr-4 shadow-sm;
+	  }
 }
