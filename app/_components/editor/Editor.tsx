@@ -22,7 +22,7 @@ import Comments from '../liveblocks/Comments';
 // try to recover gracefully without losing user data.
 
 function Placeholder() {
-  return <div className="editor-placeholder">Enter some rich text...</div>;
+  return <div className="text-gray-600 overflow-hidden dark:text-[#b4c6ee] absolute truncate top-10 left-10 text-sm select-none inline-block pointer-events-none">Enter some rich text...</div>;
 }
 
 export function Editor({ roomId, currentUserType }: { roomId: string, currentUserType: UserType }) {
