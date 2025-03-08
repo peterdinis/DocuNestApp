@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navigation from "./_components/shared/Navigation";
+import { Toaster } from "@/components/ui/sonner"
 import MouseMoveEffect from "./_components/shared/MouseMoveEffect";
 
 const geistSans = Geist({
@@ -32,6 +32,7 @@ export default function RootLayout({
         <body className={`bg-background text-foreground antialiased`}>
           <MouseMoveEffect />
           {children}
+          <Toaster />
         </body>
       </body>
     </html>
