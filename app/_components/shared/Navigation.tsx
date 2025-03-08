@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { FC } from "react"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { FC } from "react";
 
 const Navigation: FC = () => {
     return (
@@ -17,30 +17,29 @@ const Navigation: FC = () => {
                         <div className="hidden md:block ml-10">
                             <div className="flex items-center space-x-8">
                                 <Link href="#" className="text-sm text-gray-300 hover:text-white">
+                                    Features
+                                </Link>
+                                <Link href="#" className="text-sm text-gray-300 hover:text-white">
+                                    CTA
+                                </Link>
+                                <Link href="#" className="text-sm text-gray-300 hover:text-white">
                                     Pricing
-                                </Link>
-                                <Link href="#" className="text-sm text-gray-300 hover:text-white">
-                                    Resources
-                                </Link>
-                                <Link href="#" className="text-sm text-gray-300 hover:text-white">
-                                    Community
-                                </Link>
-                                <Link href="#" className="text-sm text-gray-300 hover:text-white">
-                                    Download
                                 </Link>
                             </div>
                         </div>
                     </div>
                     <div className="flex items-center space-x-4">
                         <Button variant="ghost" className="text-sm">
-                            Sign In
+                            Log In
                         </Button>
-                        <Button className="text-sm bg-gradient-to-r from-primary to-accent hover:opacity-90">Get Started</Button>
+                        <Button className="text-sm bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                            Create Document
+                        </Button>
                     </div>
                 </div>
             </div>
         </nav>
-    )
-}
+    );
+};
 
-export default Navigation
+export default Navigation;

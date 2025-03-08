@@ -1,27 +1,27 @@
-import { CheckCircle, Zap, Users, TrendingUp } from "lucide-react"
+import { FileText, Share2, Lock, Cloud } from "lucide-react";
 
 const features = [
   {
-    icon: <CheckCircle className="h-8 w-8 text-primary" />,
-    title: "Task Management",
-    description: "Organize and prioritize tasks with ease.",
+    icon: <FileText className="h-8 w-8 text-primary" />,
+    title: "Document Organization",
+    description: "Easily categorize, tag, and find your documents in one place.",
   },
   {
-    icon: <Zap className="h-8 w-8 text-primary" />,
-    title: "Real-time Collaboration",
-    description: "Work together seamlessly in real-time.",
+    icon: <Share2 className="h-8 w-8 text-primary" />,
+    title: "Seamless Collaboration",
+    description: "Work on documents together in real-time with your team.",
   },
   {
-    icon: <Users className="h-8 w-8 text-primary" />,
-    title: "Team Communication",
-    description: "Stay connected with built-in messaging.",
+    icon: <Lock className="h-8 w-8 text-primary" />,
+    title: "Secure Access Control",
+    description: "Manage user permissions and keep your documents safe.",
   },
   {
-    icon: <TrendingUp className="h-8 w-8 text-primary" />,
-    title: "Analytics Dashboard",
-    description: "Track progress and gain insights with powerful analytics.",
+    icon: <Cloud className="h-8 w-8 text-primary" />,
+    title: "Cloud Storage",
+    description: "Access your documents anytime, anywhere with cloud backup.",
   },
-]
+];
 
 export default function Features() {
   return (
@@ -39,6 +39,5 @@ export default function Features() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-
