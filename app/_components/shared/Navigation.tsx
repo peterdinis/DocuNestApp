@@ -33,7 +33,7 @@ const Navigation: FC = () => {
                             Log In
                         </Button>
                         <Button className="text-sm bg-gradient-to-r from-primary to-accent hover:opacity-90">
-                            Create Document
+                            Get Started
                         </Button>
                     </div>
                 </div>
