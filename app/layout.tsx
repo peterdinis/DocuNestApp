@@ -1,18 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navigation from "./_components/shared/Navigation";
+import { Toaster } from "@/components/ui/sonner"
 import MouseMoveEffect from "./_components/shared/MouseMoveEffect";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import ScrollToTop from "./_components/shared/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "DocuNest",
@@ -27,11 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`antialiased`}
       >
         <body className={`bg-background text-foreground antialiased`}>
           <MouseMoveEffect />
           {children}
+          <Toaster />
+          <ScrollToTop />
         </body>
       </body>
     </html>

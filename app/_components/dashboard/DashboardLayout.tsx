@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FileText, FolderOpen, Home, Menu, Search, Settings, Star, Trash, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 type DashboardLayoutProps = {
     children?: ReactNode
@@ -23,7 +24,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
                 </Button>
                 <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
                     <FileText className="h-6 w-6" />
-                    <span>DocManager</span>
+                    <span>DocuNest</span>
                 </Link>
                 <div className="ml-auto flex items-center gap-4">
                     <form className="relative hidden sm:block">
@@ -35,18 +36,16 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
                         />
                     </form>
                     <Button variant="ghost" size="icon">
-                        <Settings className="h-5 w-5" />
-                        <span className="sr-only">Settings</span>
-                    </Button>
-                    <Button variant="ghost" size="icon">
                         <span className="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full">
-                            <img className="aspect-square h-full w-full" src="/placeholder.svg?height=36&width=36" alt="Avatar" />
+                            <Avatar>
+                                <AvatarImage src="https://github.com/shadcn.png" />
+                                <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
                         </span>
                     </Button>
                 </div>
             </header>
             <div className="flex flex-1">
-                {/* Mobile Sidebar */}
                 <div
                     className={`fixed inset-0 z-20 bg-background/80 backdrop-blur-sm transition-all duration-200 md:hidden ${isMobileNavOpen ? "opacity-100" : "pointer-events-none opacity-0"
                         }`}
@@ -60,7 +59,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
                     <div className="flex h-16 items-center justify-between border-b px-4 md:hidden">
                         <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
                             <FileText className="h-6 w-6" />
-                            <span>DocManager</span>
+                            <span>DocuNest</span>
                         </Link>
                         <Button variant="ghost" size="icon" onClick={() => setIsMobileNavOpen(false)}>
                             <X className="h-5 w-5" />
