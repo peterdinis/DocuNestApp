@@ -2,7 +2,7 @@
 
 import { FC, ReactNode, useState } from "react";
 import Link from "next/link";
-import { FileText, FolderOpen, Home, Menu, Search, Settings, Star, Trash, X } from "lucide-react"
+import { FileText, FolderOpen, Home, Menu, Search, Star, Trash, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
