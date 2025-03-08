@@ -36,10 +36,6 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
                         />
                     </form>
                     <Button variant="ghost" size="icon">
-                        <Settings className="h-5 w-5" />
-                        <span className="sr-only">Settings</span>
-                    </Button>
-                    <Button variant="ghost" size="icon">
                         <span className="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full">
                             <Avatar>
                                 <AvatarImage src="https://github.com/shadcn.png" />
