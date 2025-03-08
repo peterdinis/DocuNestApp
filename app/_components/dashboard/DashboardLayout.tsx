@@ -63,7 +63,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
                     <div className="flex h-16 items-center justify-between border-b px-4 md:hidden">
                         <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
                             <FileText className="h-6 w-6" />
-                            <span>DocManager</span>
+                            <span>DocuNest</span>
                         </Link>
                         <Button variant="ghost" size="icon" onClick={() => setIsMobileNavOpen(false)}>
                             <X className="h-5 w-5" />
