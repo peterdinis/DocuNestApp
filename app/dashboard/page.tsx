@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { DashboardHeader } from "../_components/dashboard/DashboardHeader";
 import { DashboardShell } from "../_components/dashboard/DashboardShell";
 import { RecentDocuments } from "../_components/dashboard/RecentDocuments";
+
 const DashboardPage: NextPage = () => {
     return (
         <DashboardLayout>

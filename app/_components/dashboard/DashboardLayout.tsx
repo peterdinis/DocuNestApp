@@ -18,7 +18,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
             <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-6">
                 <Link href="/dashboard" className="flex items-center gap-2 font-semibold">
                     <FileText className="h-6 w-6" />
-                    <span>DocManager</span>
+                    <span>DocuNest</span>
                 </Link>
                 <div className="ml-auto flex items-center gap-4">
                     <form className="relative">
