@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner"
 import MouseMoveEffect from "./_components/shared/MouseMoveEffect";
+import ScrollToTop from "./_components/shared/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "DocuNest",
@@ -22,6 +23,7 @@ export default function RootLayout({
           <MouseMoveEffect />
           {children}
           <Toaster />
+          <ScrollToTop />
         </body>
       </body>
     </html>
