@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import MouseMoveEffect from "./_components/shared/MouseMoveEffect";
 import ScrollToTop from "./_components/shared/ScrollToTop";
+import QueryProvider from "./_components/shared/providers/QueryProvider";
 
 export const metadata: Metadata = {
 	title: "DocuNest",
@@ -18,10 +19,12 @@ export default function RootLayout({
 		<html lang="en" className="dark">
 			<body className={`antialiased`}>
 				<body className={`bg-background text-foreground antialiased`}>
-					<MouseMoveEffect />
-					{children}
-					<Toaster />
-					<ScrollToTop />
+					<QueryProvider>
+						<MouseMoveEffect />
+						{children}
+						<Toaster />
+						<ScrollToTop />
+					</QueryProvider>
 				</body>
 			</body>
 		</html>
