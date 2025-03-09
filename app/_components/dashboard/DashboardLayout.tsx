@@ -9,7 +9,6 @@ import {
 	Home,
 	Menu,
 	Search,
-	Settings,
 	Star,
 	Trash,
 	X,
