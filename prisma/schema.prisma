@@ -14,16 +14,18 @@ datasource db {
 }
 
 model User {
-  id               String    @id @default(cuid())
+  id               String     @id @default(cuid())
   name             String
   email            String
-  emailVerified    Boolean   @default(false)
+  emailVerified    Boolean    @default(false)
   image            String?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  twoFactorEnabled Boolean   @default(false)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  twoFactorEnabled Boolean    @default(false)
   Session          Session[]
   Account          Account[]
+  documents        Document[]
+  folders          Folder[]
 
   @@unique([email])
   @@map("user")
@@ -73,4 +75,29 @@ model Verification {
   updatedAt  DateTime? @updatedAt
 
   @@map("verification")
+}
+
+model Document {
+  id          String   @id @default(uuid())
+  userId      String
+  folderId    String?
+  title       String?
+  description String?
+  contentSize Int?
+  inTrash     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  folder      Folder?  @relation(fields: [folderId], references: [id], onDelete: Cascade)
+}
+
+model Folder {
+  id        String     @id @default(uuid())
+  userId    String
+  name      String
+  inTrash   Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documents Document[]
 }
