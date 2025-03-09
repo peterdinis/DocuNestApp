@@ -1,3 +1,5 @@
+"use client"
+
 import { FC } from "react";
 import {
   DropdownMenu,
@@ -8,8 +10,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useSession, signOut } from "@/lib/auth-client"
-import {toast} from "sonner"
+import { toast } from "sonner"
 import { useRouter } from "next/navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const ProfileDropdown: FC = () => {
   const session = useSession()
@@ -25,7 +28,12 @@ const ProfileDropdown: FC = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>Profile</DropdownMenuTrigger>
+      <DropdownMenuTrigger>
+        <Avatar>
+          <AvatarImage src={session.data?.user.image!} />
+          <AvatarFallback>PR</AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
