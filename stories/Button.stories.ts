@@ -11,7 +11,16 @@ const meta: Meta<typeof Button> = {
 	argTypes: {
 		variant: {
 			control: "select",
-			options: ["default", "success", "warning", "destructive", "outline", "secondary", "ghost", "link"],
+			options: [
+				"default",
+				"success",
+				"warning",
+				"destructive",
+				"outline",
+				"secondary",
+				"ghost",
+				"link",
+			],
 		},
 		size: {
 			control: "select",
@@ -59,4 +68,4 @@ export const WarningButton: Story = {
 		size: "default",
 		children: "Click me",
 	},
-}
+};
