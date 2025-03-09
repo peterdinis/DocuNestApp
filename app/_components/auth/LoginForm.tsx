@@ -9,12 +9,52 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { signIn } from "@/lib/auth-client"
+import { useAuthState } from "@/app/_hooks/useAuthState"
+import { LoginSchema } from "@/app/_schemas/authSchemas"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/router"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
 
 export function LoginForm({
     className,
     ...props
   }: React.ComponentPropsWithoutRef<"div">) {
+    const router = useRouter()
+    const { error, success, loading, setSuccess, setError, setLoading, resetState } = useAuthState();
+
+    const form = useForm<z.infer<typeof LoginSchema>>({
+        resolver: zodResolver(LoginSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+        }
+    })
+
+    const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+        try {
+          await signIn.email({
+            email: values.email,
+            password: values.password
+          }, {
+            onResponse: () => {
+              setLoading(false)
+            },
+            onRequest: () => {
+              resetState()
+              setLoading(true)
+            },
+            onSuccess: (ctx) => {
+                router.replace('/dashboard')
+            },
+          });
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
     return (
       <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card>
