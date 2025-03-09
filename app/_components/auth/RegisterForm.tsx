@@ -9,12 +9,19 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-
+import {toast} from "sonner"
+import { signUp } from "@/lib/auth-client"
+import { useRouter } from "next/navigation"
 
 export function RegisterForm({
     className,
     ...props
   }: React.ComponentPropsWithoutRef<"div">) {
+    const router = useRouter()
+
+    const handleSignUp = () => {
+        signUp()
+    }
     return (
       <div className={cn("flex flex-col gap-6", className)} {...props}>
         <Card>
