@@ -11,7 +11,7 @@ const meta: Meta<typeof Button> = {
 	argTypes: {
 		variant: {
 			control: "select",
-			options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
+			options: ["default", "success", "warning", "destructive", "outline", "secondary", "ghost", "link"],
 		},
 		size: {
 			control: "select",
@@ -29,7 +29,7 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const PrimaryButton: Story = {
 	args: {
 		variant: "default",
 		size: "default",
@@ -37,7 +37,7 @@ export const Default: Story = {
 	},
 };
 
-export const Destructive: Story = {
+export const ErrorButton: Story = {
 	args: {
 		variant: "destructive",
 		size: "default",
@@ -45,58 +45,18 @@ export const Destructive: Story = {
 	},
 };
 
-export const Outline: Story = {
+export const SuccessButton: Story = {
 	args: {
-		variant: "outline",
+		variant: "success",
 		size: "default",
-		children: "Outline",
+		children: "Click me",
 	},
 };
 
-export const Secondary: Story = {
+export const WarningButton: Story = {
 	args: {
-		variant: "secondary",
+		variant: "warning",
 		size: "default",
-		children: "Secondary",
+		children: "Click me",
 	},
-};
-
-export const Ghost: Story = {
-	args: {
-		variant: "ghost",
-		size: "default",
-		children: "Ghost",
-	},
-};
-
-export const Link: Story = {
-	args: {
-		variant: "link",
-		size: "default",
-		children: "Learn more",
-	},
-};
-
-export const Small: Story = {
-	args: {
-		variant: "default",
-		size: "sm",
-		children: "Small",
-	},
-};
-
-export const Large: Story = {
-	args: {
-		variant: "default",
-		size: "lg",
-		children: "Large",
-	},
-};
-
-export const Icon: Story = {
-	args: {
-		variant: "default",
-		size: "icon",
-		children: "🔔 Click",
-	},
-};
+}
