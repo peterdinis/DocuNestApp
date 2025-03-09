@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { type FC, type ReactNode, useState } from "react";
+import ProfileDropdown from "../auth/ProfileDropdown";
 
 type DashboardLayoutProps = {
 	children?: ReactNode;
@@ -53,12 +54,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
 						/>
 					</form>
 					<Button variant="ghost" size="icon">
-						<span className="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full">
-							<Avatar>
-								<AvatarImage src="https://github.com/shadcn.png" />
-								<AvatarFallback>CN</AvatarFallback>
-							</Avatar>
-						</span>
+						<ProfileDropdown />
 					</Button>
 				</div>
 			</header>
