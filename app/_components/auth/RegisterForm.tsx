@@ -1,3 +1,5 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -8,14 +10,14 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Form, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { signUp } from "@/lib/auth-client"
 import { useRouter } from "next/navigation"
 import { useAuthState } from "@/app/_hooks/useAuthState"
 import { SignupSchema } from "@/app/_schemas/authSchemas"
 import { z } from "zod"
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
 import { toast } from "sonner"
 
 export function RegisterForm({
