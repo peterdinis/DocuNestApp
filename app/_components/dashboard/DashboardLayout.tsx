@@ -106,7 +106,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
 							All Documents
 						</Link>
 						<Link
-							href="/dashboard/folders"
+							href="/folders"
 							className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-muted"
 							onClick={() => setIsMobileNavOpen(false)}
 						>
