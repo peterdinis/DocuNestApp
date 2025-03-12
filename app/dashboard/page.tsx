@@ -23,6 +23,7 @@ import {
 import { DashboardHeader } from "../_components/dashboard/DashboardHeader";
 import { DashboardShell } from "../_components/dashboard/DashboardShell";
 import { RecentDocuments } from "../_components/dashboard/RecentDocuments";
+import CreateFolderModal from "../_components/folders/CreateFolderModal";
 
 const DashboardPage: NextPage = () => {
 	return (
@@ -178,8 +179,7 @@ const DashboardPage: NextPage = () => {
 									</div>
 								</div>
 								<Button variant="ghost" size="icon">
-									<FolderPlus className="h-5 w-5" />
-									<span className="sr-only">Create folder</span>
+									<CreateFolderModal btnName={<FolderPlus className="h-5 w-5" />} />
 								</Button>
 							</div>
 							<div className="flex items-center justify-between rounded-md border p-3">
