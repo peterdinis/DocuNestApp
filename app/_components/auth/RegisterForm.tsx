@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuthState } from "@/app/_hooks/useAuthState";
+import { useAuthState } from "@/app/_hooks/auth/useAuthState";
 import { SignupSchema } from "@/app/_schemas/authSchemas";
 import { Button } from "@/components/ui/button";
 import {

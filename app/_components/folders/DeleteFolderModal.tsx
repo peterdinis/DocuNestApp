@@ -57,7 +57,7 @@ const DeleteFolder: FC<IDeleteFolderProps> = ({ folderId }) => {
                         <Button variant='secondary' className='ml-2' onClick={onMoveToTrash}>
                             Move to Trash
                         </Button>
-                        <Button variant='success' className='ml-2' onClick={onDelete}>
+                        <Button className='ml-2 bg-red-600' onClick={onDelete}>
                             Delete Folder
                         </Button>
                     </DialogFooter>
