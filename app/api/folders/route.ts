@@ -3,10 +3,10 @@ import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-	const session = getSession();
+	const session = await getSession();
 	const allUsersFolders = await db.folder.findMany({
 		where: {
-			userId: (await session).data?.user.id,
+			userId: session.data?.user.id,
 		},
 	});
 	if (!allUsersFolders) {
