@@ -1,13 +1,14 @@
-import { getSession } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function PUT(request: NextRequest) {
 	const { folderId } = await request.json();
 
-	const session = await getSession();
+	const session = await auth.api.getSession({ headers: request.headers }); 
+	
 
-	if (!session || !session.data?.user.id) {
+	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 	}
 
@@ -23,7 +24,7 @@ export async function PUT(request: NextRequest) {
 	await db.folder.update({
 		where: {
 			id: findOneFolder!.id,
-			userId: session.data?.user.id,
+			userId: session.user.id,
 		},
 		data: {
 			inTrash: true,

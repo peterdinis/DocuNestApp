@@ -1,12 +1,12 @@
-import { getSession } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
-	const session = await getSession();
+export async function GET(request: NextRequest) {
+	const session = await auth.api.getSession({ headers: request.headers });
 	const allUsersFolders = await db.folder.findMany({
 		where: {
-			userId: session.data?.user.id,
+			userId: session!.user.id
 		},
 	});
 	if (!allUsersFolders) {

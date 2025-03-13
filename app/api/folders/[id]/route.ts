@@ -1,3 +1,4 @@
+import { auth } from "@/lib/auth";
 import { getSession } from "@/lib/auth-client";
 import { db } from "@/lib/db";
 import { type NextRequest, NextResponse } from "next/server";
@@ -13,9 +14,10 @@ export async function GET(request: NextRequest) {
 		);
 	}
 
-	const session = await getSession();
+	const session = await auth.api.getSession({ headers: request.headers }); 
+		
 
-	if (!session || !session.data?.user.id) {
+	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 	}
 
@@ -46,9 +48,9 @@ export async function PUT(request: NextRequest) {
 		);
 	}
 
-	const session = await getSession();
+	const session = await auth.api.getSession({ headers: request.headers }); 
 
-	if (!session || !session.data?.user.id) {
+	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 	}
 
@@ -57,7 +59,7 @@ export async function PUT(request: NextRequest) {
 	await db.folder.update({
 		where: {
 			id,
-			userId: session.data?.user.id,
+			userId: session.user.id,
 		},
 		data: {
 			name,
@@ -78,9 +80,9 @@ export async function DELETE(request: NextRequest) {
 		);
 	}
 
-	const session = await getSession();
+	const session = await auth.api.getSession({ headers: request.headers }); 
 
-	if (!session || !session.data?.user.id) {
+	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 	}
 
@@ -89,7 +91,7 @@ export async function DELETE(request: NextRequest) {
 			where: { id },
 		});
 
-		if (!folder || folder.userId !== session.data?.user.id) {
+		if (!folder || folder.userId !== session.user.id) {
 			return NextResponse.json(
 				{ message: "Folder not found or access denied" },
 				{ status: 404 },

@@ -1,10 +1,10 @@
-import { getSession } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-	const session = await getSession();
-	if (!session || !session.data?.user.id) {
+	const session = await auth.api.getSession({ headers: request.headers }); 
+	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 	}
 
@@ -15,11 +15,10 @@ export async function GET(request: Request) {
 
 	const allUsersPaginatedFolders = await db.folder.findMany({
 		where: {
-			userId: session.data?.user.id,
+			userId: session.user.id,
 
 			name: {
 				contains: query,
-				mode: "insensitive",
 			},
 		},
 		skip: (page - 1) * pageSize,
@@ -28,10 +27,9 @@ export async function GET(request: Request) {
 
 	const totalFolders = await db.folder.count({
 		where: {
-			userId: session.data?.user.id,
+			userId: session.user.id,
 			name: {
 				contains: query,
-				mode: "insensitive",
 			},
 		},
 	});
