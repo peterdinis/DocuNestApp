@@ -1,16 +1,17 @@
-import { getSession } from '@/lib/auth-client';
+import { auth } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
     try {
-        const session = await getSession()
+        const session = await auth.api.getSession({ headers: req.headers }); // Pass headers instead of req
+        console.log("Session:", session);
 
-        if (!session || !session.data?.user?.id) {
+        if (!session || !session.user.id) {
             return NextResponse.json(
                 { error: 'Not authenticated' },
-                { status: 401 },
+                { status: 401 }
             );
         }
 
@@ -18,7 +19,7 @@ export async function POST(req: Request) {
 
         const createNewFolder = await db.folder.create({
             data: {
-                userId: session.data?.user?.id,
+                userId: session.user.id, // Use session.data.user.id
                 name,
             },
         });
@@ -26,6 +27,7 @@ export async function POST(req: Request) {
         revalidatePath('/dashboard');
         return NextResponse.json(createNewFolder, { status: 200 });
     } catch (error) {
-        return new NextResponse('POST,FOLDER CREATE ERROR', { status: 500 });
+        console.error("Error:", error);
+        return new NextResponse('POST, FOLDER CREATE ERROR', { status: 500 });
     }
 }
