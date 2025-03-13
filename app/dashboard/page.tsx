@@ -179,7 +179,9 @@ const DashboardPage: NextPage = () => {
 									</div>
 								</div>
 								<Button variant="ghost" size="icon">
-									<CreateFolderModal btnName={<FolderPlus className="h-5 w-5" />} />
+									<CreateFolderModal
+										btnName={<FolderPlus className="h-5 w-5" />}
+									/>
 								</Button>
 							</div>
 							<div className="flex items-center justify-between rounded-md border p-3">

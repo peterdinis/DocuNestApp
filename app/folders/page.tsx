@@ -1,13 +1,13 @@
-import { NextPage } from "next"
-import DashboardLayout from "../_components/dashboard/DashboardLayout"
-import AllFoldersContent from "../_components/folders/AllFoldersContent"
+import type { NextPage } from "next";
+import DashboardLayout from "../_components/dashboard/DashboardLayout";
+import AllFoldersContent from "../_components/folders/AllFoldersContent";
 
 const AllFoldersPage: NextPage = () => {
-    return (
-        <DashboardLayout>
-            <AllFoldersContent />
-        </DashboardLayout>
-    )
-}
+	return (
+		<DashboardLayout>
+			<AllFoldersContent />
+		</DashboardLayout>
+	);
+};
 
-export default AllFoldersPage
+export default AllFoldersPage;

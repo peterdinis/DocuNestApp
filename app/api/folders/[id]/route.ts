@@ -14,8 +14,7 @@ export async function GET(request: NextRequest) {
 		);
 	}
 
-	const session = await auth.api.getSession({ headers: request.headers }); 
-		
+	const session = await auth.api.getSession({ headers: request.headers });
 
 	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
@@ -48,7 +47,7 @@ export async function PUT(request: NextRequest) {
 		);
 	}
 
-	const session = await auth.api.getSession({ headers: request.headers }); 
+	const session = await auth.api.getSession({ headers: request.headers });
 
 	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
@@ -80,7 +79,7 @@ export async function DELETE(request: NextRequest) {
 		);
 	}
 
-	const session = await auth.api.getSession({ headers: request.headers }); 
+	const session = await auth.api.getSession({ headers: request.headers });
 
 	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
