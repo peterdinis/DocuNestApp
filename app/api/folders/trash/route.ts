@@ -1,10 +1,11 @@
+import { auth } from "@/lib/auth";
 import { getSession } from "@/lib/auth-client";
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-	const session = await getSession();
-	if (!session || !session.data?.user.id) {
+	const session = await auth.api.getSession({ headers: request.headers }); 
+	if (!session || !session.user.id) {
 		return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 	}
 
@@ -14,7 +15,7 @@ export async function GET(request: Request) {
 
 	const allUsersPaginatedFoldersInTrash = await db.folder.findMany({
 		where: {
-			userId: session.data?.user.id,
+			userId: session.user.id,
 			inTrash: true,
 		},
 		skip: (page - 1) * pageSize,
@@ -23,7 +24,7 @@ export async function GET(request: Request) {
 
 	const totalFoldersInTrash = await db.folder.count({
 		where: {
-			userId: session.data?.user.id,
+			userId: session.user.id,
 		},
 	});
 
