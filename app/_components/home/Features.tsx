@@ -34,7 +34,7 @@ export default function Features() {
 						<div key={index} className="bg-white/20 p-6 rounded-lg shadow-md">
 							<div className="mb-4">{feature.icon}</div>
 							<h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-							<p className="text-gray-600">{feature.description}</p>
+							<p className="text-gray-100">{feature.description}</p>
 						</div>
 					))}
 				</div>
