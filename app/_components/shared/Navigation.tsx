@@ -39,10 +39,10 @@ const Navigation: FC = () => {
 					</div>
 					<div className="flex items-center space-x-4">
 						<Button variant="ghost" className="text-sm">
-							Log In
+							<Link href={"/sign-in"}>Login</Link>
 						</Button>
 						<Button className="text-sm bg-gradient-to-r from-primary to-accent hover:opacity-90">
-							Get Started
+							<Link href="/sign-up">Get Started</Link>
 						</Button>
 					</div>
 				</div>
