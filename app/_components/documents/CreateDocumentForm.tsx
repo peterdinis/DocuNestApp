@@ -7,7 +7,9 @@ import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { Loader2 } from 'lucide-react';
 import useCreateDocument from '@/app/_hooks/docs/useCreateDocument';
-import Editor from './Editor';
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("./Editor"), { ssr: false });
 
 const CreateDocumentForm: FC = () => {
     const [description, setDescription] = useState('');
@@ -124,15 +126,15 @@ const CreateDocumentForm: FC = () => {
                         'Create Document'
                     )}
                 </Button>
-                <div className='mt-3'>
-                    <Editor />
-                </div>
                 {errors.description && (
                     <span className='text-red-500'>
                         {errors.description.message as unknown as ReactNode}
                     </span>
                 )}
             </form>
+            <div className='mt-6 w-full h-full'>
+                    <Editor />
+                </div>
         </div>
     );
 };
