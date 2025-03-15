@@ -25,6 +25,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import type { z } from "zod";
 
 export function LoginForm({
@@ -33,6 +35,7 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"div">) {
 	const router = useRouter();
 	const { loading, setLoading, resetState } = useAuthState();
+	const [showPassword, setShowPassword] = useState(false);
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
 		defaultValues: {
@@ -57,7 +60,7 @@ export function LoginForm({
 						setLoading(true);
 					},
 					onSuccess: (ctx) => {
-						toast("Login was successfull", {
+						toast("Login was successful", {
 							className: "bg-green-800 text-white font-bold text-xl",
 						});
 						router.replace("/dashboard");
@@ -106,12 +109,21 @@ export function LoginForm({
 									<FormItem>
 										<FormLabel>Password</FormLabel>
 										<FormControl>
-											<Input
-												disabled={loading}
-												type="password"
-												placeholder="********"
-												{...field}
-											/>
+											<div className="relative">
+												<Input
+													disabled={loading}
+													type={showPassword ? "text" : "password"}
+													placeholder="********"
+													{...field}
+												/>
+												<button
+													type="button"
+													onClick={() => setShowPassword(!showPassword)}
+													className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+												>
+													{showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+												</button>
+											</div>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
