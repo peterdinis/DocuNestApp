@@ -25,6 +25,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import type { z } from "zod";
 
 export function RegisterForm({
@@ -33,6 +35,7 @@ export function RegisterForm({
 }: React.ComponentPropsWithoutRef<"div">) {
 	const router = useRouter();
 	const { loading, setLoading, resetState } = useAuthState();
+	const [showPassword, setShowPassword] = useState(false);
 	const form = useForm<z.infer<typeof SignupSchema>>({
 		resolver: zodResolver(SignupSchema),
 		defaultValues: {
@@ -70,13 +73,14 @@ export function RegisterForm({
 			console.error(error);
 		}
 	};
+
 	return (
 		<div className={cn("flex flex-col gap-6", className)} {...props}>
 			<Card>
 				<CardHeader>
 					<CardTitle className="text-2xl">Register</CardTitle>
 					<CardDescription>
-						Enter your email below to login to your account
+						Enter your email below to register an account
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
@@ -89,12 +93,7 @@ export function RegisterForm({
 									<FormItem>
 										<FormLabel>Name</FormLabel>
 										<FormControl>
-											<Input
-												disabled={loading}
-												type="text"
-												placeholder="john"
-												{...field}
-											/>
+											<Input disabled={loading} type="text" placeholder="John" {...field} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -107,12 +106,7 @@ export function RegisterForm({
 									<FormItem>
 										<FormLabel>Email</FormLabel>
 										<FormControl>
-											<Input
-												disabled={loading}
-												type="email"
-												placeholder="example@gmail.com"
-												{...field}
-											/>
+											<Input disabled={loading} type="email" placeholder="example@gmail.com" {...field} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -124,25 +118,34 @@ export function RegisterForm({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Password</FormLabel>
-										<FormControl>
+									<FormControl>
+										<div className="relative">
 											<Input
 												disabled={loading}
-												type="password"
+												type={showPassword ? "text" : "password"}
 												placeholder="********"
 												{...field}
 											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<Button disabled={loading} type="submit" className="w-full">
-								Submit
-							</Button>
-						</form>
-					</Form>
-				</CardContent>
-			</Card>
-		</div>
+												<button
+													type="button"
+													className="absolute inset-y-0 right-3 flex items-center"
+													onClick={() => setShowPassword(!showPassword)}
+												>
+													{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+												</button>
+										</div>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<Button disabled={loading} type="submit" className="w-full">
+							Submit
+						</Button>
+					</form>
+				</Form>
+			</CardContent>
+		</Card>
+	</div>
 	);
 }
