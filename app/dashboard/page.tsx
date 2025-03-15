@@ -40,7 +40,7 @@ const DashboardPage: NextPage = () => {
 						</Button>
 						<Button size="sm">
 							<Plus className="mr-2 h-4 w-4" />
-							New Document
+							<Link href="/documents/new">New Document</Link>
 						</Button>
 					</div>
 				</DashboardHeader>
@@ -142,7 +142,9 @@ const DashboardPage: NextPage = () => {
 								<div className="flex items-center gap-2">
 									<FileText className="h-5 w-5 text-muted-foreground" />
 									<div className="space-y-0.5">
-										<p className="text-sm font-medium">Create Document</p>
+										<p className="text-sm font-medium">
+											<Link href="/documents/new">Create Document</Link>
+										</p>
 										<p className="text-xs text-muted-foreground">
 											Create a new document from scratch
 										</p>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -98,7 +97,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
 							Dashboard
 						</Link>
 						<Link
-							href="/dashboard/documents"
+							href="/documents"
 							className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-muted"
 							onClick={() => setIsMobileNavOpen(false)}
 						>
