@@ -102,8 +102,7 @@ const CreateDocumentForm: FC = () => {
                     Go back
                 </Button>
             </div>
-
-            // TODO: Later drawer with ai functions
+            
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className='mt-5 flex flex-col items-center'
