@@ -6,8 +6,8 @@ import 'react-quill/dist/quill.snow.css';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { Loader2 } from 'lucide-react';
-import QuillEditor from './QuillEditor';
 import useCreateDocument from '@/app/_hooks/docs/useCreateDocument';
+import Editor from './Editor';
 
 const CreateDocumentForm: FC = () => {
     const [description, setDescription] = useState('');
@@ -125,7 +125,7 @@ const CreateDocumentForm: FC = () => {
                     )}
                 </Button>
                 <div className='mt-3'>
-                EDITOR
+                    <Editor />
                 </div>
                 {errors.description && (
                     <span className='text-red-500'>
