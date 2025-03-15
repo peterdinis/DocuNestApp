@@ -97,7 +97,7 @@ const AllFoldersContent: FC = () => {
 										</Button>
 									</div>
 
-									<div className="mt-6">
+									<div>
 										<DeleteFolder folderId={item.id} />
 									</div>
 								</Card>
