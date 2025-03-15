@@ -124,11 +124,9 @@ const CreateDocumentForm: FC = () => {
                         'Create Document'
                     )}
                 </Button>
-                <QuillEditor
-                    value={description}
-                    readOnly={false}
-                    onChange={handleDescriptionChange}
-                />
+                <div className='mt-3'>
+                EDITOR
+                </div>
                 {errors.description && (
                     <span className='text-red-500'>
                         {errors.description.message as unknown as ReactNode}
