@@ -3,33 +3,21 @@
 import { useParams } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
-import {
-    Button,
-    ButtonGroup,
-    Input,
-    Table,
-    TableHeader,
-    TableColumn,
-    TableBody,
-    TableRow,
-    TableCell,
-    Pagination,
-    Spinner,
-} from '@nextui-org/react';
-import Loading from '../shared/Loading';
-import { format } from 'date-fns';
 import useFolderDetail from '@/app/_hooks/folders/useFolderDetail';
+import { Loader2 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import useUpdateFolder from '@/app/_hooks/folders/useUpdateFolder';
 
 const FolderInfo: FC = () => {
     const { id } = useParams<{ id: string }>();
+    const parsedId = Number(id)
     const [isEditMode, setIsEditMode] = useState(false);
     const [name, setName] = useState('');
-    const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
 
-    const { data, isLoading, isError } = useFolderDetail({ id, isEditMode });
+    const { data, isLoading, isError } = useFolderDetail({ id: parsedId, isEditMode });
 
-    console.log("D", data);
 
     useEffect(() => {
         if (data) {
@@ -45,7 +33,7 @@ const FolderInfo: FC = () => {
     };
 
     if (isLoading) {
-        return <Loading />;
+        return <Loader2 className='animate-spin w-8 h-8' />
     }
 
     if (isError) {
@@ -65,19 +53,17 @@ const FolderInfo: FC = () => {
             <h2 className='prose-h2: prose mt-5 flex justify-center align-top text-3xl dark:text-white'>
                 Folder Info
             </h2>
-            <ButtonGroup className='ml-4 mt-6'>
-                <Button variant='solid' color='primary'>
+            <div className='ml-4 mt-6 flex justify-center'>
+                <Button>
                     <Link href='/folders/all'>Go Back</Link>
                 </Button>
                 <Button
-                    variant='solid'
-                    color='secondary'
                     onClick={handleEditToggle}
                     className='ml-4'
                 >
                     {isEditMode ? 'Cancel Edit' : 'Enable Edit'}
                 </Button>
-            </ButtonGroup>
+            </div>
             <hr className='mt-3' />
             <div className='ml-5 mt-5'>
                 <form>
@@ -91,8 +77,6 @@ const FolderInfo: FC = () => {
                     {isEditMode && (
                         <Button
                             onClick={handleSave}
-                            variant='solid'
-                            color='primary'
                             className='mt-4'
                         >
                             Save document
