@@ -27,7 +27,19 @@ const CreateDocumentForm: FC = () => {
   const router = useRouter();
   const editor = useCreateBlockNote({});
 
+  // Use the correct method to handle editor changes
+  const handleEditorChange = () => {
+    // Convert editor content to a string representation
+    const content = JSON.stringify(editor.document);
+    setValue("description", content, { shouldDirty: true });
+  };
+
   const onSubmit = (formData: { title: string; description: string }) => {
+    // Make sure to get the latest content before submitting
+    if (editor) {
+      const content = JSON.stringify(editor.document);
+      formData.description = content;
+    }
     createDocumentMut(formData);
     reset();
     router.push("/dashboard");
@@ -53,12 +65,6 @@ const CreateDocumentForm: FC = () => {
     } else if (confirm("Máte neuložené zmeny. Naozaj chcete odísť?")) {
       router.push("/dashboard");
     }
-  };
-
-  // Add editorContent state handling for description
-  const handleEditorChange = () => {
-    const markdown = editor.markdown;
-    setValue("description", markdown, { shouldDirty: true });
   };
 
   return (
