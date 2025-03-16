@@ -44,14 +44,6 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
 					<span>DocuNest</span>
 				</Link>
 				<div className="ml-auto flex items-center gap-4">
-					<form className="relative hidden sm:block">
-						<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-						<Input
-							type="search"
-							placeholder="Search documents..."
-							className="w-[200px] pl-8 md:w-[300px] lg:w-[400px]"
-						/>
-					</form>
 					<Button variant="ghost" size="icon">
 						<ProfileDropdown />
 					</Button>

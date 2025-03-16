@@ -1,3 +1,5 @@
+"use client"
+
 import {
 	ArrowUpRight,
 	FileText,
@@ -24,8 +26,17 @@ import { DashboardHeader } from "../_components/dashboard/DashboardHeader";
 import { DashboardShell } from "../_components/dashboard/DashboardShell";
 import { RecentDocuments } from "../_components/dashboard/RecentDocuments";
 import CreateFolderModal from "../_components/folders/CreateFolderModal";
+import useFolders from "../_hooks/folders/useFolders";
+import { useMemo } from "react";
 
 const DashboardPage: NextPage = () => {
+	const {data: folderData} = useFolders()
+
+	const countedFolderData = useMemo(() => {
+		const mappedFolders = folderData.map((item: any) => item)
+
+		return mappedFolders.length
+	}, [folderData])
 	return (
 		<DashboardLayout>
 			<DashboardShell>
@@ -100,8 +111,7 @@ const DashboardPage: NextPage = () => {
 							<FolderPlus className="h-4 w-4 text-muted-foreground" />
 						</CardHeader>
 						<CardContent>
-							<div className="text-2xl font-bold">12</div>
-							<p className="text-xs text-muted-foreground">+3 new folders</p>
+							<div className="text-2xl font-bold">{countedFolderData}</div>
 						</CardContent>
 					</Card>
 				</div>
@@ -126,7 +136,7 @@ const DashboardPage: NextPage = () => {
 						<CardFooter>
 							<Button variant="outline" className="w-full">
 								<ArrowUpRight className="mr-2 h-4 w-4" />
-								See all documents
+								<Link href="/documents">See all documents</Link>
 							</Button>
 						</CardFooter>
 					</Card>
