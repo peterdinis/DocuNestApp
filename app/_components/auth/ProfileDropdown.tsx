@@ -10,6 +10,7 @@ import {
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { signOut, useSession } from "@/lib/auth-client";
+import { User2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import type { FC } from "react";
 import { toast } from "sonner";
@@ -31,7 +32,9 @@ const ProfileDropdown: FC = () => {
 			<DropdownMenuTrigger>
 				<Avatar>
 					<AvatarImage src={session.data?.user.image!} />
-					<AvatarFallback>PR</AvatarFallback>
+					<AvatarFallback>
+						<User2 className="w-4 h-4" />
+					</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>
