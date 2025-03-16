@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { type FC, type ReactNode, useEffect, useState } from "react";
+import { type FC, useEffect } from "react";
 import "react-quill/dist/quill.snow.css";
 import useCreateDocument from "@/app/_hooks/docs/useCreateDocument";
 import { Button } from "@/components/ui/button";
@@ -12,9 +12,6 @@ import { useForm } from "react-hook-form";
 const Editor = dynamic(() => import("./Editor"), { ssr: false });
 
 const CreateDocumentForm: FC = () => {
-	const [description, setDescription] = useState("");
-	const [drawerInputText, setDrawerInputText] = useState("");
-
 	const {
 		register,
 		handleSubmit,
@@ -22,113 +19,89 @@ const CreateDocumentForm: FC = () => {
 		reset,
 		setValue,
 		watch,
-	} = useForm();
+	} = useForm({
+		defaultValues: { title: "", description: "" },
+	});
 
 	const { mutate: createDocumentMut, isPending } = useCreateDocument();
-
-	const handleDescriptionChange = (content: string) => {
-		setDescription(content);
-		setValue("description", content, { shouldDirty: true });
-	};
-
 	const router = useRouter();
 
-	const onSubmit = (formData: any) => {
-		formData.description = description;
+	const onSubmit = (formData: { title: string; description: string }) => {
 		createDocumentMut(formData);
 		reset();
 		router.push("/dashboard");
 	};
 
 	useEffect(() => {
-		if (drawerInputText) {
-			setDescription(
-				(prevDescription) => `${prevDescription}\n${drawerInputText}`,
-			);
-			setValue("description", `${description ?? ""}\n${drawerInputText}`, {
-				shouldDirty: true,
-			});
-			setDrawerInputText("");
-		}
-	}, [drawerInputText, setValue, description]);
-
-	useEffect(() => {
 		const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-			const title = watch("title");
-			const description = watch("description");
-			if (isDirty || description || title) {
+			if (isDirty || watch("description") || watch("title")) {
 				event.preventDefault();
 				event.returnValue = "";
 			}
 		};
 
 		window.addEventListener("beforeunload", handleBeforeUnload);
-
 		return () => {
 			window.removeEventListener("beforeunload", handleBeforeUnload);
 		};
-	}, [isDirty, description, watch]);
+	}, [isDirty, watch]);
 
 	const handleGoBack = () => {
-		const title = watch("title");
-		const description = watch("description");
-		if ((!isDirty && description) || !title) {
+		if (!isDirty && !watch("description") && !watch("title")) {
 			router.push("/dashboard");
-		} else if (
-			confirm("You have unsaved changes. Are you sure you want to leave?")
-		) {
+		} else if (confirm("Máte neuložené zmeny. Naozaj chcete odísť?")) {
 			router.push("/dashboard");
 		}
 	};
 
 	return (
 		<div>
-			<h2 className="mt-5 flex justify-center align-top text-4xl">
-				New document
-			</h2>
+			<h2 className="mt-5 flex justify-center text-4xl">Nový dokument</h2>
 
 			<p className="mt-5 text-center text-xl font-bold text-red-800">
-				New documents are always assigned to the Unassigned documents folder
+				Nové dokumenty sú vždy zaradené do priečinka „Nepriradené dokumenty“.
 			</p>
 
 			<div className="mt-5 flex justify-center">
-				<Button variant="outline">Use AI</Button>
+				<Button variant="outline">Použiť AI</Button>
 				<Button variant="default" className="ml-5" onClick={handleGoBack}>
-					Go back
+					Späť
 				</Button>
 			</div>
 
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="mt-5 flex flex-col items-center"
+				className="mt-5 flex flex-col items-center w-full"
 			>
 				<input
 					type="text"
-					{...register("title", { required: "Title is required" })}
-					placeholder="Title"
-					className="mb-2 border border-gray-300 p-2"
+					{...register("title", { required: "Názov je povinný" })}
+					placeholder="Názov dokumentu"
+					className="mb-2 w-3/4 border border-gray-300 p-2"
 				/>
 				{errors.title && (
-					<span className="text-red-500">
-						{errors.title.message as unknown as ReactNode}
-					</span>
+					<span className="text-red-500">{errors.title.message}</span>
 				)}
+
+				<div className="mt-6 w-3/4">
+					<Editor
+						onChange={(content) => setValue("description", content)}
+						initialContent={watch("description")}
+					/>
+				</div>
+
+				{errors.description && (
+					<span className="text-red-500">{errors.description.message}</span>
+				)}
+
 				<Button type="submit" className="mt-6" disabled={isPending}>
 					{isPending ? (
-						<Loader2 className="h-8 w-8 animate-bounce" />
+						<Loader2 className="h-8 w-8 animate-spin" />
 					) : (
-						"Create Document"
+						"Vytvoriť dokument"
 					)}
 				</Button>
-				{errors.description && (
-					<span className="text-red-500">
-						{errors.description.message as unknown as ReactNode}
-					</span>
-				)}
 			</form>
-			<div className="mt-6 w-full h-full">
-				<Editor />
-			</div>
 		</div>
 	);
 };
