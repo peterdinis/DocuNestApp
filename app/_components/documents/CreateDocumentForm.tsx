@@ -1,15 +1,13 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import { type FC, useEffect } from "react";
-import "react-quill/dist/quill.snow.css";
-import useCreateDocument from "@/app/_hooks/docs/useCreateDocument";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+import { type FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
-
-const Editor = dynamic(() => import("./Editor"), { ssr: false });
+import "@blocknote/core/fonts/inter.css";
+import { BlockNoteView } from "@blocknote/mantine";
+import "@blocknote/mantine/style.css";
+import useCreateDocument from "@/app/_hooks/docs/useCreateDocument";
+import { useCreateBlockNote } from "@blocknote/react";
 
 const CreateDocumentForm: FC = () => {
 	const {
@@ -25,7 +23,7 @@ const CreateDocumentForm: FC = () => {
 
 	const { mutate: createDocumentMut, isPending } = useCreateDocument();
 	const router = useRouter();
-
+	const editor = useCreateBlockNote({});
 	const onSubmit = (formData: { title: string; description: string }) => {
 		createDocumentMut(formData);
 		reset();
@@ -84,10 +82,7 @@ const CreateDocumentForm: FC = () => {
 				)}
 
 				<div className="mt-6 w-3/4">
-					<Editor
-						onChange={(content) => setValue("description", content)}
-						initialContent={watch("description")}
-					/>
+					<BlockNoteView editor={editor} />
 				</div>
 
 				{errors.description && (
