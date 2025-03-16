@@ -22,11 +22,11 @@ import { Input } from "@/components/ui/input";
 import { signUp } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
 import type { z } from "zod";
 
 export function RegisterForm({
@@ -93,7 +93,12 @@ export function RegisterForm({
 									<FormItem>
 										<FormLabel>Name</FormLabel>
 										<FormControl>
-											<Input disabled={loading} type="text" placeholder="John" {...field} />
+											<Input
+												disabled={loading}
+												type="text"
+												placeholder="John"
+												{...field}
+											/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -106,7 +111,12 @@ export function RegisterForm({
 									<FormItem>
 										<FormLabel>Email</FormLabel>
 										<FormControl>
-											<Input disabled={loading} type="email" placeholder="example@gmail.com" {...field} />
+											<Input
+												disabled={loading}
+												type="email"
+												placeholder="example@gmail.com"
+												{...field}
+											/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -118,34 +128,38 @@ export function RegisterForm({
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>Password</FormLabel>
-									<FormControl>
-										<div className="relative">
-											<Input
-												disabled={loading}
-												type={showPassword ? "text" : "password"}
-												placeholder="********"
-												{...field}
-											/>
+										<FormControl>
+											<div className="relative">
+												<Input
+													disabled={loading}
+													type={showPassword ? "text" : "password"}
+													placeholder="********"
+													{...field}
+												/>
 												<button
 													type="button"
 													className="absolute inset-y-0 right-3 flex items-center"
 													onClick={() => setShowPassword(!showPassword)}
 												>
-													{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+													{showPassword ? (
+														<EyeOff size={18} />
+													) : (
+														<Eye size={18} />
+													)}
 												</button>
-										</div>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<Button disabled={loading} type="submit" className="w-full">
-							Submit
-						</Button>
-					</form>
-				</Form>
-			</CardContent>
-		</Card>
-	</div>
+											</div>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<Button disabled={loading} type="submit" className="w-full">
+								Submit
+							</Button>
+						</form>
+					</Form>
+				</CardContent>
+			</Card>
+		</div>
 	);
 }
