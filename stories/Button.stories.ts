@@ -53,19 +53,3 @@ export const ErrorButton: Story = {
 		children: "Delete",
 	},
 };
-
-export const SuccessButton: Story = {
-	args: {
-		variant: "success",
-		size: "default",
-		children: "Click me",
-	},
-};
-
-export const WarningButton: Story = {
-	args: {
-		variant: "warning",
-		size: "default",
-		children: "Click me",
-	},
-};
