@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
 	ArrowUpRight,
@@ -22,21 +22,21 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import { useMemo } from "react";
 import { DashboardHeader } from "../_components/dashboard/DashboardHeader";
 import { DashboardShell } from "../_components/dashboard/DashboardShell";
 import { RecentDocuments } from "../_components/dashboard/RecentDocuments";
 import CreateFolderModal from "../_components/folders/CreateFolderModal";
 import useFolders from "../_hooks/folders/useFolders";
-import { useMemo } from "react";
 
 const DashboardPage: NextPage = () => {
-	const {data: folderData} = useFolders()
+	const { data: folderData } = useFolders();
 
 	const countedFolderData = useMemo(() => {
-		const mappedFolders = folderData.map((item: any) => item)
+		const mappedFolders = folderData.map((item: any) => item);
 
-		return mappedFolders.length
-	}, [folderData])
+		return mappedFolders.length;
+	}, [folderData]);
 	return (
 		<DashboardLayout>
 			<DashboardShell>
