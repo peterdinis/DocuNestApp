@@ -33,10 +33,10 @@ const DashboardPage: NextPage = () => {
 	const { data: folderData } = useFolders();
 
 	const countedFolderData = useMemo(() => {
-		const mappedFolders = folderData.map((item: any) => item);
-
+		const mappedFolders = (folderData ?? []).map((item: any) => item);
 		return mappedFolders.length;
 	}, [folderData]);
+	
 	return (
 		<DashboardLayout>
 			<DashboardShell>
