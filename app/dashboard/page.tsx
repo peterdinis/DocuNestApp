@@ -36,7 +36,7 @@ const DashboardPage: NextPage = () => {
 		const mappedFolders = (folderData ?? []).map((item: any) => item);
 		return mappedFolders.length;
 	}, [folderData]);
-	
+
 	return (
 		<DashboardLayout>
 			<DashboardShell>
@@ -161,7 +161,7 @@ const DashboardPage: NextPage = () => {
 									</div>
 								</div>
 								<Button variant="ghost" size="icon">
-									<Plus className="h-5 w-5" />
+									<Link href="/documents/new"><Plus className="h-5 w-5" /></Link>
 									<span className="sr-only">Create document</span>
 								</Button>
 							</div>

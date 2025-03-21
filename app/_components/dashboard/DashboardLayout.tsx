@@ -103,14 +103,6 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
 							<FolderOpen className="h-4 w-4" />
 							Folders
 						</Link>
-						<Link
-							href="/dashboard/starred"
-							className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-muted"
-							onClick={() => setIsMobileNavOpen(false)}
-						>
-							<Star className="h-4 w-4" />
-							Starred
-						</Link>
 						<span
 							className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-muted"
 							onClick={() => setIsMobileNavOpen(false)}
