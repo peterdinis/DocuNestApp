@@ -7,7 +7,6 @@ import {
 	FolderOpen,
 	Home,
 	Menu,
-	Search,
 	Star,
 	Trash,
 	X,
@@ -15,6 +14,7 @@ import {
 import Link from "next/link";
 import { type FC, type ReactNode, useState } from "react";
 import ProfileDropdown from "../auth/ProfileDropdown";
+import TrashDialog from "../trash/TrashDialog";
 
 type DashboardLayoutProps = {
 	children?: ReactNode;
@@ -34,7 +34,6 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
 					onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
 				>
 					<Menu className="h-5 w-5" />
-					<span className="sr-only">Toggle menu</span>
 				</Button>
 				<Link
 					href="/dashboard"
@@ -112,14 +111,13 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
 							<Star className="h-4 w-4" />
 							Starred
 						</Link>
-						<Link
-							href="/dashboard/trash"
+						<span
 							className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-muted"
 							onClick={() => setIsMobileNavOpen(false)}
 						>
 							<Trash className="h-4 w-4" />
-							Trash
-						</Link>
+							<TrashDialog />
+						</span>
 					</nav>
 					<div className="mt-auto p-4">
 						<h3 className="mb-2 text-xs font-medium">Storage</h3>
