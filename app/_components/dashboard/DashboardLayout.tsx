@@ -34,7 +34,6 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
 					onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
 				>
 					<Menu className="h-5 w-5" />
-					<span className="sr-only">Toggle menu</span>
 				</Button>
 				<Link
 					href="/dashboard"
