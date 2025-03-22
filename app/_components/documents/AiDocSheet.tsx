@@ -2,21 +2,25 @@ import {
     Sheet,
     SheetContent,
     SheetTrigger,
-  } from "@/components/ui/sheet"
-import { FC } from "react"
-import AIDoc from "./AIDoc"
+} from "@/components/ui/sheet";
+import { FC } from "react";
+import AIDoc from "./AIDoc";
 
-const AiDocSheet: FC = () => {
+type AiDocSheetProps = {
+    onContentGenerated: (content: string, extra?: any) => void;
+};
+
+const AiDocSheet: FC<AiDocSheetProps> = ({ onContentGenerated }) => {
     return (
         <Sheet>
-          <SheetTrigger>Use AI</SheetTrigger>
-          <SheetContent>
-                <AIDoc onContentGenerated={function (content: string): void {
-                    throw new Error("Function not implemented.")
-                } } />
-          </SheetContent>
+            <SheetTrigger className="px-4 py-2 bg-blue-500 text-white rounded-md">
+                Use AI
+            </SheetTrigger>
+            <SheetContent>
+                <AIDoc onContentGenerated={onContentGenerated} />
+            </SheetContent>
         </Sheet>
-    )
-}
+    );
+};
 
-export default AiDocSheet
+export default AiDocSheet;
