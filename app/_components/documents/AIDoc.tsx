@@ -26,12 +26,16 @@ const AIDoc: FC<AIDocProps> = ({ onContentGenerated }) => {
 
     return (
         <div>
+            <h3 className='text-center mt-6 font-bold text-3xl text-white'>
+                Use Ai functions to write your content
+            </h3>
             <Textarea 
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 placeholder="Enter your prompt"
+                className='mt-5'
             />
-            <Button onClick={handleGenerate} disabled={isLoading}>
+            <Button className='mt-5' onClick={handleGenerate} disabled={isLoading}>
                 {isLoading ? <Loader2 className="animate-spin" /> : 'Generate Content'}
             </Button>
             {error && <p className="text-red-500">{error}</p>}

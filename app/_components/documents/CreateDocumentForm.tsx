@@ -11,6 +11,7 @@ import "@blocknote/mantine/style.css";
 import useCreateDocument from "@/app/_hooks/docs/useCreateDocument";
 import { useCreateBlockNote } from "@blocknote/react";
 import AiDocSheet from "./AiDocSheet";
+import { Block } from "@blocknote/core";
 
 const CreateDocumentForm: FC = () => {
 	const {
@@ -75,16 +76,27 @@ const CreateDocumentForm: FC = () => {
 
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 				<div className="flex justify-between mb-4">
-					<Button type="button" variant="outline">
-					<AiDocSheet onContentGenerated={(content, _extra) => {  // Pridali sme druhý argument
-    setValue("description", content, { shouldDirty: true });
+				<Button variant={"ghost"}>
+    <AiDocSheet onContentGenerated={(content) => {
+        setValue("description", content, { shouldDirty: true });
 
-    // Aktualizuje obsah editora
-    if (editor) {
-        editor.replaceBlocks(JSON.parse(content));
-    }
-}} />
-					</Button>
+        if (editor) {
+            // Skontroluj, či máme prístup k blokom
+            const blocks = [
+                {
+                    type: "paragraph",  // Typ bloku, ktorý chceš vložiť, prispôsob podľa potreby
+                    children: [{ text: content }]  // Vložíme obsah ako textovú hodnotu
+                }
+            ];
+
+            // Ak firstBlock nie je dostupný, môžeme sa pokúsiť získať prvý blok v dokumente alebo prázdny blok
+            const referenceBlock = editor.document|| null; // Používame null ako default, ak firstBlock neexistuje
+
+            // Vložíme bloky do editora pred referenčný blok (ak existuje)
+            editor.insertBlocks(blocks, referenceBlock);
+        }
+    }} />
+</Button>
 					<Button type="button" onClick={handleGoBack} variant="outline">
 						Späť
 					</Button>
