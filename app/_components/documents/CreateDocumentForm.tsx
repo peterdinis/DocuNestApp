@@ -10,6 +10,7 @@ import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import useCreateDocument from "@/app/_hooks/docs/useCreateDocument";
 import { useCreateBlockNote } from "@blocknote/react";
+import AiDocSheet from "./AiDocSheet";
 
 const CreateDocumentForm: FC = () => {
 	const {
@@ -75,7 +76,14 @@ const CreateDocumentForm: FC = () => {
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 				<div className="flex justify-between mb-4">
 					<Button type="button" variant="outline">
-						Použiť AI
+					<AiDocSheet onContentGenerated={(content, _extra) => {  // Pridali sme druhý argument
+    setValue("description", content, { shouldDirty: true });
+
+    // Aktualizuje obsah editora
+    if (editor) {
+        editor.replaceBlocks(JSON.parse(content));
+    }
+}} />
 					</Button>
 					<Button type="button" onClick={handleGoBack} variant="outline">
 						Späť
