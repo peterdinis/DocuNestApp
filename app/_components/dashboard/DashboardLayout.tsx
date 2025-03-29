@@ -2,15 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-	FileText,
-	FolderOpen,
-	Home,
-	Menu,
-	Star,
-	Trash,
-	X,
-} from "lucide-react";
+import { FileText, FolderOpen, Home, Menu, Star, Trash, X } from "lucide-react";
 import Link from "next/link";
 import { type FC, type ReactNode, useState } from "react";
 import ProfileDropdown from "../auth/ProfileDropdown";
