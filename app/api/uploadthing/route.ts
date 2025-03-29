@@ -1,7 +1,7 @@
-import { createRouteHandler } from 'uploadthing/next';
-import { uploadRouter } from './core';
-import { UTApi } from 'uploadthing/server';
+import { createRouteHandler } from "uploadthing/next";
+import { UTApi } from "uploadthing/server";
+import { uploadRouter } from "./core";
 
 export const { GET, POST } = createRouteHandler({
-    router: uploadRouter,
+	router: uploadRouter,
 });

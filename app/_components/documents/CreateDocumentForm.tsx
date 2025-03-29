@@ -76,14 +76,17 @@ const CreateDocumentForm: FC = () => {
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 				<div className="flex justify-between mb-4">
 					<Button type="button" variant="outline">
-					<AiDocSheet onContentGenerated={(content, _extra) => {  // Pridali sme druhý argument
-    setValue("description", content, { shouldDirty: true });
+						<AiDocSheet
+							onContentGenerated={(content, _extra) => {
+								// Pridali sme druhý argument
+								setValue("description", content, { shouldDirty: true });
 
-    // Aktualizuje obsah editora
-    if (editor) {
-        editor.replaceBlocks(JSON.parse(content));
-    }
-}} />
+								// Aktualizuje obsah editora
+								if (editor) {
+									editor.replaceBlocks(JSON.parse(content));
+								}
+							}}
+						/>
 					</Button>
 					<Button type="button" onClick={handleGoBack} variant="outline">
 						Späť
